@@ -432,7 +432,7 @@ function Casos() {
   ];
 
   return (
-    <section id="casos" className="relative py-20 lg:py-28 px-6 md:px-12 bg-[#F8F9FA]">
+    <section id="casos" className="relative pt-20 lg:pt-28 pb-12 lg:pb-16 px-6 md:px-12 bg-[#F8F9FA]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">Lo que construimos</div>
@@ -485,8 +485,8 @@ function Casos() {
 ============================================================ */
 function Quienes() {
   return (
-    <section className="relative py-20 lg:py-28 px-6 md:px-12 bg-[#F8F9FA] overflow-hidden">
-      <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" aria-hidden="true" />
+    <section className="relative pt-12 lg:pt-16 pb-20 lg:pb-28 px-6 md:px-12 bg-white overflow-hidden">
+      <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" aria-hidden="true" />
       <div className="relative max-w-4xl mx-auto">
 
         {/* Header */}
