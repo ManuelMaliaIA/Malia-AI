@@ -538,8 +538,16 @@ function Quienes() {
                 Consultor de IA &amp; Tecnología · Fundador de Malia
               </p>
 
+              {/* Educación */}
+              <div className="flex items-center gap-1.5 mt-1.5 text-[13px] text-gray-500">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 flex-shrink-0" style={{ color: 'var(--primary)' }} aria-hidden="true">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3.33 1.67 8.67 1.67 12 0v-5"/>
+                </svg>
+                <span>Ingeniería de Software · Universidad Loyola Andalucía</span>
+              </div>
+
               {/* Ubicación */}
-              <div className="flex items-center gap-1.5 mt-2 text-[13px] text-muted">
+              <div className="flex items-center gap-1.5 mt-1.5 text-[13px] text-muted">
                 <Icon name="pin" className="w-3.5 h-3.5 flex-shrink-0" style={{ color: 'var(--primary)' }} />
                 <span>Barbate, Cádiz, España</span>
               </div>
