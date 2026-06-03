@@ -215,8 +215,6 @@ function Hero() {
           loading="eager"
           fetchPriority="high"
           decoding="async"
-          width="1920"
-          height="1080"
         />
         <div className="hero-shimmer" aria-hidden="true"></div>
       </div>
