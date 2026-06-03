@@ -502,21 +502,19 @@ function Quienes() {
           <div className="bg-white rounded-2xl shadow-[0_8px_40px_-12px_rgba(10,75,120,0.18)] border border-black/[0.06] overflow-hidden">
 
             {/* Banner */}
-            <div className="h-24 bg-gradient-to-r from-[#0A4B78] to-[#2A9D8F] relative">
-              <div className="absolute inset-0 opacity-10"
-                style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1.2px)', backgroundSize: '16px 16px' }} />
+            <div className="h-24 relative overflow-hidden">
+              <img src="assets/banner-linkedin.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
             </div>
 
             {/* Avatar + info */}
             <div className="px-6 pb-6">
-              {/* Avatar — iniciales sobre el banner */}
+              {/* Avatar sobre el banner */}
               <div className="relative -mt-10 mb-3 inline-flex">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#0A4B78] to-[#2A9D8F]
-                                flex items-center justify-center
-                                border-4 border-white shadow-lg
-                                text-white text-2xl font-semibold tracking-tight select-none">
-                  MM
-                </div>
+                <img
+                  src="assets/profile.jpg"
+                  alt="Manuel Malia"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-lg"
+                />
                 {/* Badge LinkedIn azul */}
                 <span className="absolute -bottom-0.5 -right-0.5 w-6 h-6 rounded-full bg-[#0A66C2] flex items-center justify-center border-2 border-white">
                   <Icon name="linkedin" className="w-3 h-3 text-white" />
