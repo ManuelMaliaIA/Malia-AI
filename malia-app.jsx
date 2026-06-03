@@ -234,9 +234,6 @@ function Hero() {
 
         <div className="lg:grid lg:grid-cols-12 lg:items-end lg:gap-12">
           <div className="lg:col-span-9">
-            <p className="reveal text-white/80 text-shadow-soft text-sm md:text-base font-medium mb-3 tracking-wide uppercase chip-mono" data-delay="150">
-              Inteligencia Artificial para tu negocio
-            </p>
             <AnimatedHeadline
               lines={["Si tu negocio puede ir mejor,", "nosotros sabemos cómo."]}
               className="text-white text-shadow-strong mb-5
@@ -277,12 +274,6 @@ function Hero() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-4 pt-3 border-t border-white/15 flex items-center justify-end text-xs text-white/85">
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-300"></span>
-                  <span>en activo</span>
-                </span>
-              </div>
             </div>
           </div>
         </div>
