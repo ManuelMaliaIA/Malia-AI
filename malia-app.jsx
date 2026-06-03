@@ -481,31 +481,97 @@ function Casos() {
 }
 
 /* ============================================================
-   QUIÉNES SOMOS
+   QUIÉNES SOMOS — LinkedIn profile card
 ============================================================ */
 function Quienes() {
   return (
     <section className="relative py-20 lg:py-28 px-6 md:px-12 bg-[#F8F9FA] overflow-hidden">
       <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" aria-hidden="true" />
-      <div className="relative max-w-3xl mx-auto text-center">
-        <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">El equipo</div>
-        <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-[-0.02em] leading-[1.05]" data-delay="80">
-          ¿Quién hay detrás de Malia?
-        </h2>
-        <p className="reveal text-lg md:text-xl text-gray-700 mt-6 leading-relaxed" data-delay="160">
-          Somos un equipo pequeño, local y con las manos en la masa. No tenemos cuenta en LinkedIn con 10.000 seguidores ni oficina en Madrid. <span className="text-ink font-medium">Tenemos tu número y te cogemos el teléfono.</span>
-        </p>
-        <a
-          href="https://www.linkedin.com/in/manuel-malia-vidal-921778224/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="reveal inline-flex items-center gap-2 mt-7 text-primary font-medium hover:gap-3 transition-all"
-          data-delay="220"
-        >
-          <Icon name="linkedin" className="w-5 h-5" />
-          Conócenos
-          <Icon name="arrow-sm" className="w-4 h-4" />
-        </a>
+      <div className="relative max-w-4xl mx-auto">
+
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">El equipo</div>
+          <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-[-0.02em] leading-[1.05]" data-delay="80">
+            ¿Quién hay detrás de Malia?
+          </h2>
+        </div>
+
+        {/* LinkedIn Card */}
+        <div className="reveal max-w-xl mx-auto" data-delay="160">
+          <div className="bg-white rounded-2xl shadow-[0_8px_40px_-12px_rgba(10,75,120,0.18)] border border-black/[0.06] overflow-hidden">
+
+            {/* Banner */}
+            <div className="h-24 bg-gradient-to-r from-[#0A4B78] to-[#2A9D8F] relative">
+              <div className="absolute inset-0 opacity-10"
+                style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1.2px)', backgroundSize: '16px 16px' }} />
+            </div>
+
+            {/* Avatar + info */}
+            <div className="px-6 pb-6">
+              {/* Avatar — iniciales sobre el banner */}
+              <div className="relative -mt-10 mb-3 inline-flex">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#0A4B78] to-[#2A9D8F]
+                                flex items-center justify-center
+                                border-4 border-white shadow-lg
+                                text-white text-2xl font-semibold tracking-tight select-none">
+                  MM
+                </div>
+                {/* Badge LinkedIn azul */}
+                <span className="absolute -bottom-0.5 -right-0.5 w-6 h-6 rounded-full bg-[#0A66C2] flex items-center justify-center border-2 border-white">
+                  <Icon name="linkedin" className="w-3 h-3 text-white" />
+                </span>
+              </div>
+
+              {/* Nombre + headline */}
+              <h3 className="text-xl font-semibold text-ink tracking-[-0.01em] leading-tight">Manuel Malia</h3>
+              <p className="text-[15px] text-gray-600 mt-0.5 leading-snug">
+                Consultor de IA &amp; Tecnología · Fundador de Malia
+              </p>
+
+              {/* Ubicación */}
+              <div className="flex items-center gap-1.5 mt-2 text-[13px] text-muted">
+                <Icon name="pin" className="w-3.5 h-3.5 flex-shrink-0" style={{ color: 'var(--primary)' }} />
+                <span>Barbate, Cádiz, España</span>
+              </div>
+
+              {/* Separador */}
+              <div className="my-4 h-px bg-black/[0.06]" />
+
+              {/* About snippet */}
+              <p className="text-[14px] text-gray-600 leading-relaxed">
+                Ayudo a negocios locales a crecer con tecnología. Sin tecnicismos, sin oficinas en Madrid.
+                Si tienes un problema, lo analizamos juntos y lo resolvemos.
+              </p>
+
+              {/* Botones */}
+              <div className="flex gap-3 mt-5">
+                <a
+                  href="https://www.linkedin.com/in/manuel-malia-vidal-921778224/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 bg-[#0A66C2] hover:bg-[#0958a8] text-white rounded-full py-2 text-[14px] font-semibold transition-colors"
+                >
+                  <Icon name="linkedin" className="w-4 h-4" />
+                  Ver perfil en LinkedIn
+                </a>
+                <a
+                  href={WHATSAPP}
+                  className="flex items-center justify-center gap-2 border border-black/[0.18] hover:border-primary hover:text-primary text-ink rounded-full px-4 py-2 text-[14px] font-semibold transition-colors"
+                >
+                  <Icon name="whatsapp" className="w-4 h-4" />
+                  Escríbeme
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Nota debajo de la card */}
+          <p className="text-center text-[13px] text-muted mt-4">
+            No somos una agencia anónima. <span className="text-ink font-medium">Tienes mi número y te cojo el teléfono.</span>
+          </p>
+        </div>
+
       </div>
     </section>
   );
