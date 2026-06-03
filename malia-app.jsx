@@ -228,12 +228,15 @@ function Hero() {
               <span className="absolute inset-0 rounded-full bg-emerald-300 animate-ping opacity-70"></span>
               <span className="relative w-2 h-2 rounded-full bg-emerald-300"></span>
             </span>
-            <span className="chip-mono">DESDE BARBATE · CÁDIZ</span>
+            <span className="chip-mono">CONSULTORÍA DE IA · BARBATE, CÁDIZ</span>
           </span>
         </div>
 
         <div className="lg:grid lg:grid-cols-12 lg:items-end lg:gap-12">
           <div className="lg:col-span-9">
+            <p className="reveal text-white/80 text-shadow-soft text-sm md:text-base font-medium mb-3 tracking-wide uppercase chip-mono" data-delay="150">
+              Inteligencia Artificial para tu negocio
+            </p>
             <AnimatedHeadline
               lines={["Si tu negocio puede ir mejor,", "nosotros sabemos cómo."]}
               className="text-white text-shadow-strong mb-5
@@ -242,7 +245,7 @@ function Hero() {
             />
 
             <p className="reveal text-white/95 text-shadow-soft text-base md:text-lg mb-7 max-w-2xl leading-relaxed" data-delay="800" style={{ transitionDuration: '1000ms' }}>
-              Analizamos tu negocio, encontramos lo que frena tu crecimiento y lo ponemos en marcha. Sin tecnicismos. Desde Barbate.
+              Somos una consultoría de Inteligencia Artificial en Barbate. Analizamos tu negocio, encontramos lo que te frena y lo ponemos en marcha. Sin tecnicismos.
             </p>
 
             <div className="reveal flex flex-wrap gap-3 md:gap-4" data-delay="1200" style={{ transitionDuration: '1000ms' }}>
