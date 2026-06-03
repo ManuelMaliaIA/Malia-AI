@@ -485,7 +485,7 @@ function Casos() {
 ============================================================ */
 function Quienes() {
   return (
-    <section className="relative pt-12 lg:pt-16 pb-20 lg:pb-28 px-6 md:px-12 bg-white overflow-hidden">
+    <section className="relative pt-12 lg:pt-16 pb-10 lg:pb-14 px-6 md:px-12 bg-white overflow-hidden">
       <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" aria-hidden="true" />
       <div className="relative max-w-4xl mx-auto">
 
@@ -587,7 +587,7 @@ function PorQue() {
   ];
 
   return (
-    <section className="relative py-20 lg:py-28 px-6 md:px-12 bg-white">
+    <section className="relative pt-10 lg:pt-14 pb-20 lg:pb-28 px-6 md:px-12 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <div className="lg:col-span-5 lg:sticky lg:top-32">
