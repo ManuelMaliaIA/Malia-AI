@@ -228,7 +228,7 @@ function Hero() {
               <span className="absolute inset-0 rounded-full bg-emerald-300 animate-ping opacity-70"></span>
               <span className="relative w-2 h-2 rounded-full bg-emerald-300"></span>
             </span>
-            <span className="chip-mono">CONSULTORÍA DE IA · BARBATE, CÁDIZ</span>
+            <span className="chip-mono">DESDE BARBATE · CÁDIZ</span>
           </span>
         </div>
 
@@ -313,13 +313,30 @@ function Dolor() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {sols.map((s, i) => (
+          {sols.slice(0, 3).map((s, i) => (
             <article
               key={i}
               className="reveal group bg-white border border-black/[0.06] rounded-2xl p-6 lg:p-7
                          hover:-translate-y-1 hover:shadow-xl transition-all duration-300
                          shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)]"
-              data-delay={(i % 3) * 100}
+              data-delay={i * 100}
+            >
+              <span className={`inline-flex w-12 h-12 rounded-xl items-center justify-center mb-5 ${s.color === 'accent' ? 'bg-accent/[0.12]' : 'bg-primary/[0.08]'}`}>
+                <Icon name={s.icon} className="w-6 h-6" style={{ color: s.color === 'accent' ? 'var(--accent)' : 'var(--primary)' }} />
+              </span>
+              <h3 className="text-lg font-semibold text-ink mb-2 tracking-[-0.01em]">{s.t}</h3>
+              <p className="text-[15px] text-gray-600 leading-relaxed">{s.d}</p>
+            </article>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 mt-5 lg:mt-6 lg:w-2/3 mx-auto">
+          {sols.slice(3).map((s, i) => (
+            <article
+              key={i}
+              className="reveal group bg-white border border-black/[0.06] rounded-2xl p-6 lg:p-7
+                         hover:-translate-y-1 hover:shadow-xl transition-all duration-300
+                         shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)]"
+              data-delay={i * 100}
             >
               <span className={`inline-flex w-12 h-12 rounded-xl items-center justify-center mb-5 ${s.color === 'accent' ? 'bg-accent/[0.12]' : 'bg-primary/[0.08]'}`}>
                 <Icon name={s.icon} className="w-6 h-6" style={{ color: s.color === 'accent' ? 'var(--accent)' : 'var(--primary)' }} />
