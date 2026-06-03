@@ -207,11 +207,19 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="relative min-h-screen w-full overflow-hidden">
-      <div className="hero-stage" aria-hidden="true">
-        <div className="hero-img"></div>
-        <div className="hero-shimmer"></div>
+      <div className="hero-stage">
+        <img
+          src="assets/hero-barbate.png"
+          alt="Vista aérea de la playa de Barbate al atardecer, con edificios blancos y agua turquesa — Barbate, Cádiz"
+          className="hero-img"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          width="1920"
+          height="1080"
+        />
+        <div className="hero-shimmer" aria-hidden="true"></div>
       </div>
-      <span className="sr-only">Vista aérea de la playa de Barbate al atardecer con edificios blancos y agua turquesa.</span>
 
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/40 to-transparent pointer-events-none" />
 
@@ -606,7 +614,7 @@ function Footer() {
               <li><a href="#como-funciona" className="hover:text-white transition-colors">Cómo funciona</a></li>
               <li><a href="#casos" className="hover:text-white transition-colors">Casos</a></li>
               <li><a href="#contacto" className="hover:text-white transition-colors">Contacto</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Aviso legal</a></li>
+              <li><a href="/aviso-legal.html" className="hover:text-white transition-colors">Aviso legal</a></li>
             </ul>
           </div>
 
@@ -635,7 +643,7 @@ function Footer() {
 
         <div className="rule-thin my-10"></div>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-[12px] text-white/55">
-          <span>© 2025 Malia · Hecho en Barbate, frente al Atlántico.</span>
+          <span>© 2026 Malia · Hecho en Barbate, frente al Atlántico.</span>
           <span className="chip-mono uppercase tracking-widest">El consultor tecnológico de Barbate</span>
         </div>
       </div>
