@@ -297,30 +297,35 @@ function Hero() {
 ============================================================ */
 function Dolor() {
   const sols = [
-    { icon: 'clock',    circle: false, color: 'primary', t: 'Agente de reservas',              d: 'Gestiona citas y reservas solo, sin que tengas que intervenir.' },
-    { icon: 'chat',     circle: true,  color: 'accent',  t: 'Asistente de atención al cliente', d: 'Responde preguntas, resuelve dudas y atiende a tus clientes a cualquier hora.' },
-    { icon: 'cycle',    circle: false, color: 'primary', t: 'Automatización de procesos',       d: 'Lo que haces a mano cada día, funcionando solo.' },
-    { icon: 'webspark', circle: true,  color: 'accent',  t: 'Web inteligente',                  d: 'Presencia online que trabaja por ti y aparece en Google.' },
-    { icon: 'trending', circle: false, color: 'primary', t: 'SaaS a medida',                    d: 'Tu propia herramienta en la nube, hecha para tu negocio y nadie más.' },
+    {
+      icon: 'webspark',
+      circle: false,
+      color: 'primary',
+      t: 'Páginas web profesionales',
+      d: 'Tu negocio visible en Google con una web rápida y bonita. Carta digital, horarios, fotos, ubicación y botón de contacto o reserva directo. Optimizada para móvil y para aparecer cuando te buscan.',
+    },
+    {
+      icon: 'clock',
+      circle: true,
+      color: 'accent',
+      t: 'Agente de reservas para restaurantes',
+      d: 'Coge tus llamadas y gestiona las reservas solo, sin que tengas que intervenir. Comprueba disponibilidad, confirma la mesa y recuerda la cita al cliente. En cuatro idiomas, 24 horas al día.',
+    },
+    {
+      icon: 'chat',
+      circle: false,
+      color: 'primary',
+      t: 'Agente de WhatsApp',
+      d: 'Un asistente que atiende tu WhatsApp a cualquier hora. Responde preguntas frecuentes, envía información, cualifica a los clientes y te pasa solo los que necesitan tu atención directa.',
+    },
+    {
+      icon: 'grid',
+      circle: true,
+      color: 'accent',
+      t: 'SaaS a medida',
+      d: 'Una aplicación construida exactamente para tu forma de trabajar. Si haces algo a mano cada día — gestionar presupuestos, hacer seguimiento de clientes, organizar pedidos, generar informes — te construimos la herramienta que lo hace sola. Sin pagar licencias mensuales a nadie.',
+    },
   ];
-
-  const Card = ({ s, i }) => (
-    <article
-      className="reveal group bg-white border border-black/[0.06] rounded-2xl p-6 lg:p-7
-                 hover:-translate-y-1 hover:shadow-xl transition-all duration-300
-                 shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)]"
-      data-delay={i * 100}
-    >
-      {/* [6] Formas alternadas: círculo vs cuadrado redondeado */}
-      <span className={`inline-flex w-12 h-12 items-center justify-center mb-5
-        ${s.circle ? 'rounded-full' : 'rounded-xl'}
-        ${s.color === 'accent' ? 'bg-accent/[0.12]' : 'bg-primary/[0.08]'}`}>
-        <Icon name={s.icon} className="w-6 h-6" style={{ color: s.color === 'accent' ? 'var(--accent)' : 'var(--primary)' }} />
-      </span>
-      <h3 className="text-lg font-semibold text-ink mb-2 tracking-[-0.01em]">{s.t}</h3>
-      <p className="text-[15px] text-gray-600 leading-relaxed">{s.d}</p>
-    </article>
-  );
 
   return (
     <section className="relative bg-gradient-to-b from-white to-[#F8F9FA] py-20 lg:py-32 px-6 md:px-12">
@@ -335,15 +340,28 @@ function Dolor() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {sols.slice(0, 3).map((s, i) => <Card key={i} s={s} i={i} />)}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 mt-5 lg:mt-6 lg:w-2/3 mx-auto">
-          {sols.slice(3).map((s, i) => <Card key={i} s={s} i={i} />)}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+          {sols.map((s, i) => (
+            <article
+              key={i}
+              className="reveal group bg-white border border-black/[0.06] rounded-2xl p-6 lg:p-8
+                         hover:-translate-y-1 hover:shadow-xl transition-all duration-300
+                         shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)]"
+              data-delay={i * 100}
+            >
+              <span className={`inline-flex w-12 h-12 items-center justify-center mb-5
+                ${s.circle ? 'rounded-full' : 'rounded-xl'}
+                ${s.color === 'accent' ? 'bg-accent/[0.12]' : 'bg-primary/[0.08]'}`}>
+                <Icon name={s.icon} className="w-6 h-6" style={{ color: s.color === 'accent' ? 'var(--accent)' : 'var(--primary)' }} />
+              </span>
+              <h3 className="text-lg font-semibold text-ink mb-2 tracking-[-0.01em]">{s.t}</h3>
+              <p className="text-[15px] text-gray-600 leading-relaxed">{s.d}</p>
+            </article>
+          ))}
         </div>
 
         <p className="reveal text-center text-lg md:text-xl text-gray-700 mt-12 max-w-2xl mx-auto italic" data-delay="160">
-          ¿No ves tu problema aquí? Cuéntanoslo igualmente. <span className="text-ink font-medium not-italic">Si tiene solución, la construimos.</span>
+          ¿No ves lo que necesitas? Cuéntanoslo. <span className="text-ink font-medium not-italic">Si tiene solución, la construimos.</span>
         </p>
       </div>
     </section>
