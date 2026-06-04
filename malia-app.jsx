@@ -145,7 +145,7 @@ function Nav() {
 
   const links = [
     { href: '#como-funciona', label: 'Cómo funciona' },
-    { href: '#casos', label: 'Casos' },
+    { href: '#casos', label: 'Ejemplos' },
     { href: '#contacto', label: 'Contacto' },
   ];
 
@@ -491,8 +491,8 @@ function Casos() {
     {
       badge: 'SaaS a medida',
       badgeBg: 'var(--secondary)',
-      title: 'Tu herramienta, para tu forma de trabajar.',
-      desc: 'Una aplicación construida exactamente para tu negocio. Gestión de presupuestos, clientes, pedidos o informes — funcionando sola, sin pagar licencias mensuales a nadie.',
+      title: 'Ejemplo: pedidos de hamburguesería por WhatsApp, directo a la tablet.',
+      desc: 'El cliente pide por WhatsApp. El agente confirma el pedido automáticamente. El encargado lo ve en la tablet sin tocar el móvil. Este es un ejemplo — construimos la herramienta exacta para tu negocio.',
       demo: <DemoSaas />,
     },
   ];
@@ -536,8 +536,8 @@ function Casos() {
               </div>
             </div>
 
-            {/* Demo area */}
-            <div className="bg-[#F1F3F5] mx-6 mb-6 rounded-2xl overflow-hidden min-h-[320px] flex items-center justify-center">
+            {/* Demo area — key fuerza remount y dispara fadeSlide */}
+            <div key={current} className="demo-fade bg-[#F1F3F5] mx-6 mb-6 rounded-2xl overflow-hidden min-h-[320px] flex items-center justify-center">
               {d.demo}
             </div>
 
@@ -693,7 +693,7 @@ function DemoWhatsApp() {
 function DemoSaas() {
   return (
     <div className="w-full p-4 md:p-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
 
         {/* Izquierda — WhatsApp del cliente */}
         <div>
@@ -1004,7 +1004,7 @@ function Footer() {
             <div className="chip-mono text-[10px] uppercase tracking-widest mb-4" style={{ color: 'var(--secondary)' }}>Navega</div>
             <ul className="space-y-2.5 text-sm text-white/70">
               <li><a href="#como-funciona" className="hover:text-white transition-colors">Cómo funciona</a></li>
-              <li><a href="#casos" className="hover:text-white transition-colors">Casos</a></li>
+              <li><a href="#casos" className="hover:text-white transition-colors">Ejemplos</a></li>
               <li><a href="#contacto" className="hover:text-white transition-colors">Contacto</a></li>
               <li><a href="/aviso-legal.html" className="hover:text-white transition-colors">Aviso legal</a></li>
             </ul>
