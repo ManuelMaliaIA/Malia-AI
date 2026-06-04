@@ -54,7 +54,7 @@ function AnimatedHeadline({ lines, initialDelay = 200, perChar = 30, className =
     <h1 className={className} aria-label={lines.join(' ')}>
       {flat.map((item, i) => {
         if (item.br) return <br key={i} />;
-        const c = item.ch === ' ' ? ' ' : item.ch;
+        const c = item.ch === ' ' ? ' ' : item.ch;
         return <span key={i} className={'char ' + (i < shown ? 'in' : '')}>{c}</span>;
       })}
     </h1>
@@ -179,7 +179,8 @@ function Nav() {
         </div>
 
         <div className="flex items-center gap-2">
-          <a href="#contacto" className="hidden sm:inline-flex items-center gap-2 bg-[#0A4B78] hover:bg-[#0a4b78]/85 text-white rounded-lg px-5 py-2 text-sm font-medium transition-all">
+          {/* [1] Botón CTA navbar en naranja para más calidez */}
+          <a href="#contacto" className="hidden sm:inline-flex items-center gap-2 bg-secondary hover:bg-[#e8913a] text-white rounded-lg px-5 py-2 text-sm font-medium transition-all">
             Diagnóstico gratis
             <Icon name="arrow-sm" className="w-3.5 h-3.5" />
           </a>
@@ -194,7 +195,7 @@ function Nav() {
           {links.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-white/90 py-2">{l.label}</a>
           ))}
-          <a href="#contacto" onClick={() => setOpen(false)} className="bg-[#0A4B78] text-white rounded-lg px-5 py-2 text-center font-medium mt-1">Diagnóstico gratis</a>
+          <a href="#contacto" onClick={() => setOpen(false)} className="bg-secondary text-white rounded-lg px-5 py-2 text-center font-medium mt-1">Diagnóstico gratis</a>
         </div>
       )}
     </header>
@@ -207,17 +208,11 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="relative min-h-screen w-full overflow-hidden">
-      <div className="hero-stage">
-        <img
-          src="assets/hero-barbate.png"
-          alt="Vista aérea de la playa de Barbate al atardecer, con edificios blancos y agua turquesa — Barbate, Cádiz"
-          className="hero-img"
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-        />
-        <div className="hero-shimmer" aria-hidden="true"></div>
+      <div className="hero-stage" aria-hidden="true">
+        <div className="hero-img"></div>
+        <div className="hero-shimmer"></div>
       </div>
+      <span className="sr-only">Vista aérea de la playa de Barbate al atardecer con edificios blancos y agua turquesa.</span>
 
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/40 to-transparent pointer-events-none" />
 
@@ -246,7 +241,7 @@ function Hero() {
             </p>
 
             <div className="reveal flex flex-wrap gap-3 md:gap-4" data-delay="1200" style={{ transitionDuration: '1000ms' }}>
-              <a href={WHATSAPP} className="inline-flex items-center gap-2 bg-white text-black px-7 md:px-8 py-3 rounded-lg font-medium text-base hover:bg-gray-100 hover:scale-[1.02] transition-all duration-300 shadow-lg">
+              <a href={WHATSAPP} className="inline-flex items-center gap-2 bg-secondary hover:bg-[#e8913a] text-white px-7 md:px-8 py-3 rounded-lg font-medium text-base transition-all duration-300 shadow-lg hover:scale-[1.02]">
                 <Icon name="whatsapp" className="w-4 h-4" />
                 Quiero mi diagnóstico gratuito
               </a>
@@ -257,8 +252,9 @@ function Hero() {
             </div>
           </div>
 
+          {/* [2] Tarjeta Powered by IA con cierre visual */}
           <div className="lg:col-span-3 mt-8 lg:mt-0 flex lg:justify-end">
-            <div className="reveal liquid-glass rounded-2xl px-6 py-5 text-white max-w-xs" data-delay="1400" style={{ transitionDuration: '1000ms' }}>
+            <div className="reveal liquid-glass rounded-2xl px-6 py-5 text-white max-w-xs w-full" data-delay="1400" style={{ transitionDuration: '1000ms' }}>
               <div className="text-[10px] uppercase tracking-[0.22em] opacity-80 mb-2 chip-mono">Powered by IA</div>
               <div className="text-xl md:text-2xl font-light leading-tight tracking-[-0.01em]">
                 Inteligencia Artificial aplicada a tu negocio
@@ -274,6 +270,11 @@ function Hero() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-4 pt-3 border-t border-white/15">
+                <a href="#contacto" className="w-full flex items-center justify-center gap-2 bg-secondary/90 hover:bg-secondary rounded-lg py-2 text-xs font-semibold chip-mono uppercase tracking-wider transition-colors">
+                  Diagnóstico gratis
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -293,19 +294,39 @@ function Hero() {
 ============================================================ */
 function Dolor() {
   const sols = [
-    { icon: 'clock',    color: 'primary', t: 'Agente de reservas',              d: 'Gestiona citas y reservas solo, sin que tengas que intervenir.' },
-    { icon: 'chat',     color: 'accent',  t: 'Asistente de atención al cliente', d: 'Responde preguntas, resuelve dudas y atiende a tus clientes a cualquier hora.' },
-    { icon: 'cycle',    color: 'primary', t: 'Automatización de procesos',       d: 'Lo que haces a mano cada día, funcionando solo.' },
-    { icon: 'webspark', color: 'accent',  t: 'Web inteligente',                  d: 'Presencia online que trabaja por ti y aparece en Google.' },
-    { icon: 'trending', color: 'primary', t: 'SaaS a medida',                    d: 'Tu propia herramienta en la nube, hecha para tu negocio y nadie más.' },
+    { icon: 'clock',    circle: false, color: 'primary', t: 'Agente de reservas',              d: 'Gestiona citas y reservas solo, sin que tengas que intervenir.' },
+    { icon: 'chat',     circle: true,  color: 'accent',  t: 'Asistente de atención al cliente', d: 'Responde preguntas, resuelve dudas y atiende a tus clientes a cualquier hora.' },
+    { icon: 'cycle',    circle: false, color: 'primary', t: 'Automatización de procesos',       d: 'Lo que haces a mano cada día, funcionando solo.' },
+    { icon: 'webspark', circle: true,  color: 'accent',  t: 'Web inteligente',                  d: 'Presencia online que trabaja por ti y aparece en Google.' },
+    { icon: 'trending', circle: false, color: 'primary', t: 'SaaS a medida',                    d: 'Tu propia herramienta en la nube, hecha para tu negocio y nadie más.' },
   ];
+
+  const Card = ({ s, i }) => (
+    <article
+      className="reveal group bg-white border border-black/[0.06] rounded-2xl p-6 lg:p-7
+                 hover:-translate-y-1 hover:shadow-xl transition-all duration-300
+                 shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)]"
+      data-delay={i * 100}
+    >
+      {/* [6] Formas alternadas: círculo vs cuadrado redondeado */}
+      <span className={`inline-flex w-12 h-12 items-center justify-center mb-5
+        ${s.circle ? 'rounded-full' : 'rounded-xl'}
+        ${s.color === 'accent' ? 'bg-accent/[0.12]' : 'bg-primary/[0.08]'}`}>
+        <Icon name={s.icon} className="w-6 h-6" style={{ color: s.color === 'accent' ? 'var(--accent)' : 'var(--primary)' }} />
+      </span>
+      <h3 className="text-lg font-semibold text-ink mb-2 tracking-[-0.01em]">{s.t}</h3>
+      <p className="text-[15px] text-gray-600 leading-relaxed">{s.d}</p>
+    </article>
+  );
+
   return (
     <section className="relative bg-gradient-to-b from-white to-[#F8F9FA] py-20 lg:py-32 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14 lg:mb-16">
-          <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">Lo que podemos construir</div>
+          {/* [1] Overline en naranja */}
+          <div className="overline text-xs uppercase font-medium mb-4 reveal" style={{ color: 'var(--secondary)' }}>Lo que podemos construir</div>
           <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-[-0.02em] leading-[1.05]" data-delay="80">
-            Creamos soluciones con IA a medida de tu negocio.
+            Creamos soluciones con IA <span style={{ color: 'var(--secondary)' }}>a medida</span> de tu negocio.
           </h2>
           <p className="reveal text-muted text-base md:text-lg mt-5 max-w-2xl mx-auto" data-delay="160">
             Esto es solo una muestra de lo que podemos construir para ti.
@@ -313,38 +334,10 @@ function Dolor() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {sols.slice(0, 3).map((s, i) => (
-            <article
-              key={i}
-              className="reveal group bg-white border border-black/[0.06] rounded-2xl p-6 lg:p-7
-                         hover:-translate-y-1 hover:shadow-xl transition-all duration-300
-                         shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)]"
-              data-delay={i * 100}
-            >
-              <span className={`inline-flex w-12 h-12 rounded-xl items-center justify-center mb-5 ${s.color === 'accent' ? 'bg-accent/[0.12]' : 'bg-primary/[0.08]'}`}>
-                <Icon name={s.icon} className="w-6 h-6" style={{ color: s.color === 'accent' ? 'var(--accent)' : 'var(--primary)' }} />
-              </span>
-              <h3 className="text-lg font-semibold text-ink mb-2 tracking-[-0.01em]">{s.t}</h3>
-              <p className="text-[15px] text-gray-600 leading-relaxed">{s.d}</p>
-            </article>
-          ))}
+          {sols.slice(0, 3).map((s, i) => <Card key={i} s={s} i={i} />)}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 mt-5 lg:mt-6 lg:w-2/3 mx-auto">
-          {sols.slice(3).map((s, i) => (
-            <article
-              key={i}
-              className="reveal group bg-white border border-black/[0.06] rounded-2xl p-6 lg:p-7
-                         hover:-translate-y-1 hover:shadow-xl transition-all duration-300
-                         shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)]"
-              data-delay={i * 100}
-            >
-              <span className={`inline-flex w-12 h-12 rounded-xl items-center justify-center mb-5 ${s.color === 'accent' ? 'bg-accent/[0.12]' : 'bg-primary/[0.08]'}`}>
-                <Icon name={s.icon} className="w-6 h-6" style={{ color: s.color === 'accent' ? 'var(--accent)' : 'var(--primary)' }} />
-              </span>
-              <h3 className="text-lg font-semibold text-ink mb-2 tracking-[-0.01em]">{s.t}</h3>
-              <p className="text-[15px] text-gray-600 leading-relaxed">{s.d}</p>
-            </article>
-          ))}
+          {sols.slice(3).map((s, i) => <Card key={i} s={s} i={i} />)}
         </div>
 
         <p className="reveal text-center text-lg md:text-xl text-gray-700 mt-12 max-w-2xl mx-auto italic" data-delay="160">
@@ -370,22 +363,28 @@ function ComoFunciona() {
       <div className="absolute inset-0 dot-grid opacity-40 pointer-events-none" aria-hidden="true" />
       <div className="relative max-w-6xl mx-auto">
         <div className="text-center mb-14">
-          <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">Cómo trabajamos</div>
+          {/* [1] Overline naranja */}
+          <div className="overline text-xs uppercase font-medium mb-4 reveal" style={{ color: 'var(--secondary)' }}>Cómo trabajamos</div>
           <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-[-0.02em] leading-[1.05]" data-delay="80">
             Así trabajamos.
           </h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-5 lg:gap-6 relative">
-          {/* connector line */}
-          <div aria-hidden="true" className="hidden md:block absolute top-[44px] left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20"></div>
+          {/* [4] Línea conectora más visible con naranja */}
+          <div aria-hidden="true" className="hidden md:block absolute top-[44px] left-[16.66%] right-[16.66%] h-0.5 bg-gradient-to-r from-secondary/30 via-secondary/60 to-secondary/30 rounded-full"></div>
 
           {steps.map((s, i) => (
             <div key={i} className="reveal relative" data-delay={i * 140}>
-              <div className="flex md:flex-col items-center md:items-start gap-4">
-                <span className="relative z-10 w-[88px] h-[88px] rounded-2xl bg-white border border-black/[0.06] shadow-[0_8px_30px_-16px_rgba(10,75,120,0.25)] flex items-center justify-center flex-shrink-0">
+              {/* Conector vertical en móvil */}
+              {i < steps.length - 1 && (
+                <div aria-hidden="true" className="md:hidden absolute left-11 top-[88px] w-0.5 h-8 bg-gradient-to-b from-secondary/50 to-transparent"></div>
+              )}
+              <div className="flex md:flex-col items-start gap-4">
+                <span className="relative z-10 w-[88px] h-[88px] rounded-2xl bg-white border-2 border-secondary/20 shadow-[0_8px_30px_-16px_rgba(244,162,89,0.4)] flex items-center justify-center flex-shrink-0">
                   <Icon name={s.icon} className="w-9 h-9" style={{ color: 'var(--primary)' }} />
-                  <span className="absolute -top-2 -right-2 chip-mono text-[10px] text-white bg-secondary rounded-full w-7 h-7 flex items-center justify-center">{s.n}</span>
+                  {/* [1] Badge naranja más visible */}
+                  <span className="absolute -top-3 -right-3 chip-mono text-[11px] text-white rounded-full w-8 h-8 flex items-center justify-center font-bold shadow-md" style={{ background: 'var(--secondary)' }}>{s.n}</span>
                 </span>
               </div>
               <div className="mt-5">
@@ -397,16 +396,18 @@ function ComoFunciona() {
         </div>
 
         <div className="reveal mt-12 liquid-glass-light rounded-2xl p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center gap-5" data-delay="120">
-          <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 rounded-full text-white flex items-center justify-center flex-shrink-0" style={{ background: 'var(--secondary)' }}>
             <Icon name="mark" className="w-6 h-6" />
           </div>
           <div className="flex-1">
-            <div className="text-[13px] uppercase chip-mono tracking-widest text-primary/70">El primer paso es gratis</div>
+            <div className="text-[13px] uppercase chip-mono tracking-widest" style={{ color: 'var(--secondary)' }}>El primer paso es gratis</div>
             <div className="text-ink text-[15px] mt-1">El diagnóstico no te cuesta nada. Si lo que vemos no te compensa, te lo decimos claro y no pasa nada.</div>
           </div>
-          <a href="#contacto" className="chip-mono text-[11px] uppercase text-white bg-primary rounded-lg px-4 py-2.5 hover:bg-[#0a4b78]/85 transition-colors whitespace-nowrap">Pedir diagnóstico</a>
+          <a href="#contacto" className="chip-mono text-[11px] uppercase text-white rounded-lg px-4 py-2.5 transition-colors whitespace-nowrap" style={{ background: 'var(--secondary)' }}>Pedir diagnóstico</a>
         </div>
       </div>
+      {/* [3] Transición suave hacia la siguiente sección */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-[#F8F9FA] pointer-events-none" aria-hidden="true" />
     </section>
   );
 }
@@ -460,7 +461,7 @@ function Casos() {
               data-delay={i * 120}
             >
               <div className="flex items-center justify-between mb-5">
-                <span className="inline-flex w-12 h-12 rounded-xl bg-primary/[0.08] items-center justify-center">
+                <span className="inline-flex w-12 h-12 rounded-full bg-primary/[0.08] items-center justify-center">
                   <Icon name={c.icon} className="w-6 h-6" style={{ color: 'var(--primary)' }} />
                 </span>
                 <span className="chip-mono text-[10px] uppercase tracking-widest text-accent bg-accent/[0.12] rounded-full px-3 py-1.5">{c.badge}</span>
@@ -470,7 +471,7 @@ function Casos() {
               <p className="text-[15px] text-gray-600 leading-relaxed">{c.body}</p>
 
               <div className="mt-6 pt-5 border-t border-black/[0.06]">
-                <div className="text-3xl md:text-4xl font-semibold text-primary tracking-[-0.03em] leading-none">{c.stat}</div>
+                <div className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-none" style={{ color: 'var(--secondary)' }}>{c.stat}</div>
                 <div className="text-[13px] text-muted mt-2">{c.statLabel}</div>
               </div>
             </article>
@@ -481,12 +482,14 @@ function Casos() {
           <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-6">
             ¿No ves tu caso aquí? Cuéntanoslo. <span className="text-ink font-medium">Si tiene solución, la construimos.</span>
           </p>
-          <a href={WHATSAPP} className="inline-flex items-center gap-2.5 bg-primary text-white px-7 py-3.5 rounded-lg font-medium hover:bg-[#0a4b78]/85 hover:scale-[1.02] transition-all">
+          <a href={WHATSAPP} className="inline-flex items-center gap-2.5 text-white px-7 py-3.5 rounded-lg font-medium hover:scale-[1.02] transition-all" style={{ background: 'var(--primary)' }}>
             <Icon name="whatsapp" className="w-4 h-4" />
             Escríbenos por WhatsApp
           </a>
         </div>
       </div>
+      {/* [3] Transición suave */}
+      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white pointer-events-none" aria-hidden="true" />
     </section>
   );
 }
@@ -500,7 +503,6 @@ function Quienes() {
       <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" aria-hidden="true" />
       <div className="relative max-w-4xl mx-auto">
 
-        {/* Header */}
         <div className="text-center mb-12">
           <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">El equipo</div>
           <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-[-0.02em] leading-[1.05]" data-delay="80">
@@ -508,37 +510,30 @@ function Quienes() {
           </h2>
         </div>
 
-        {/* LinkedIn Card */}
         <div className="reveal max-w-xl mx-auto" data-delay="160">
           <div className="bg-white rounded-2xl shadow-[0_8px_40px_-12px_rgba(10,75,120,0.18)] border border-black/[0.06] overflow-hidden">
 
-            {/* Banner */}
             <div className="h-24 relative overflow-hidden">
               <img src="assets/banner-linkedin.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
             </div>
 
-            {/* Avatar + info */}
             <div className="px-6 pb-6">
-              {/* Avatar sobre el banner */}
               <div className="relative -mt-10 mb-3 inline-flex">
                 <img
                   src="assets/profile.jpg"
                   alt="Manuel Malia"
                   className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-lg"
                 />
-                {/* Badge LinkedIn azul */}
                 <span className="absolute -bottom-0.5 -right-0.5 w-6 h-6 rounded-full bg-[#0A66C2] flex items-center justify-center border-2 border-white">
                   <Icon name="linkedin" className="w-3 h-3 text-white" />
                 </span>
               </div>
 
-              {/* Nombre + headline */}
               <h3 className="text-xl font-semibold text-ink tracking-[-0.01em] leading-tight">Manuel Malia</h3>
               <p className="text-[15px] text-gray-600 mt-0.5 leading-snug">
                 Consultor de IA &amp; Tecnología · Fundador de Malia
               </p>
 
-              {/* Educación */}
               <div className="flex items-center gap-1.5 mt-1.5 text-[13px] text-gray-500">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 flex-shrink-0" style={{ color: 'var(--primary)' }} aria-hidden="true">
                   <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3.33 1.67 8.67 1.67 12 0v-5"/>
@@ -546,22 +541,18 @@ function Quienes() {
                 <span>Ingeniería de Software · Universidad Loyola Andalucía</span>
               </div>
 
-              {/* Ubicación */}
               <div className="flex items-center gap-1.5 mt-1.5 text-[13px] text-muted">
                 <Icon name="pin" className="w-3.5 h-3.5 flex-shrink-0" style={{ color: 'var(--primary)' }} />
                 <span>Barbate, Cádiz, España</span>
               </div>
 
-              {/* Separador */}
               <div className="my-4 h-px bg-black/[0.06]" />
 
-              {/* About snippet */}
               <p className="text-[14px] text-gray-600 leading-relaxed">
                 Ayudo a negocios locales a crecer con tecnología. Sin tecnicismos, sin oficinas en Madrid.
                 Si tienes un problema, lo analizamos juntos y lo resolvemos.
               </p>
 
-              {/* Botones */}
               <div className="flex gap-3 mt-5">
                 <a
                   href="https://www.linkedin.com/in/manuel-malia-vidal-921778224/"
@@ -583,7 +574,6 @@ function Quienes() {
             </div>
           </div>
 
-          {/* Nota debajo de la card */}
           <p className="text-center text-[13px] text-muted mt-4">
             No somos una agencia anónima. <span className="text-ink font-medium">Tienes mi número y te cojo el teléfono.</span>
           </p>
@@ -610,9 +600,9 @@ function PorQue() {
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <div className="lg:col-span-5 lg:sticky lg:top-32">
-            <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">Por qué Malia</div>
+            <div className="overline text-xs uppercase font-medium mb-4 reveal" style={{ color: 'var(--secondary)' }}>Por qué Malia</div>
             <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-[-0.02em] leading-[1.05]" data-delay="80">
-              Por qué los negocios de Barbate confían en nosotros.
+              Por qué los negocios de Barbate <span style={{ color: 'var(--secondary)' }}>confían</span> en nosotros.
             </h2>
             <p className="reveal text-muted text-base md:text-lg mt-5 leading-relaxed" data-delay="160">
               No vendemos tecnología por vender. Resolvemos lo que te frena, te lo explicamos claro y nos quedamos cerca.
@@ -621,9 +611,10 @@ function PorQue() {
 
           <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4 lg:gap-5">
             {items.map((it, i) => (
-              <div key={i} className="reveal bg-paper rounded-2xl p-6 border border-black/[0.05]" data-delay={i * 90}>
-                <span className="inline-flex w-11 h-11 rounded-xl bg-accent/[0.12] items-center justify-center mb-4">
-                  <Icon name={it.icon} className="w-6 h-6" style={{ color: 'var(--accent)' }} />
+              <div key={i} className="reveal bg-paper rounded-2xl p-6 border border-black/[0.05] hover:-translate-y-1 hover:shadow-md transition-all duration-300" data-delay={i * 90}>
+                {/* [6] Círculos en Por qué Malia */}
+                <span className="inline-flex w-11 h-11 rounded-full items-center justify-center mb-4" style={{ background: 'rgba(244,162,89,0.12)' }}>
+                  <Icon name={it.icon} className="w-6 h-6" style={{ color: 'var(--secondary)' }} />
                 </span>
                 <h3 className="text-lg font-semibold text-ink mb-1.5 tracking-[-0.01em]">{it.k}</h3>
                 <p className="text-[14px] text-muted leading-relaxed">{it.v}</p>
@@ -637,30 +628,36 @@ function PorQue() {
 }
 
 /* ============================================================
-   CTA FINAL
+   CTA FINAL — [5] más impactante
 ============================================================ */
 function CTAFinal() {
   return (
-    <section id="contacto" className="relative py-20 lg:py-28 px-6 md:px-12 bg-gradient-to-br from-[#0A4B78] to-[#072f4d] text-white overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.06]" style={{
+    <section id="contacto" className="relative py-24 lg:py-36 px-6 md:px-12 text-white overflow-hidden" style={{ background: 'linear-gradient(135deg, #072f4d 0%, #0A4B78 50%, #0d6494 100%)' }}>
+      {/* Dot grid */}
+      <div className="absolute inset-0 opacity-[0.07]" style={{
         backgroundImage: 'radial-gradient(rgba(255,255,255,0.85) 1px, transparent 1.2px)',
         backgroundSize: '24px 24px'
       }} aria-hidden="true"></div>
+      {/* Glow naranja decorativo */}
+      <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none" style={{ background: 'var(--secondary)' }} aria-hidden="true" />
       <div className="relative max-w-3xl mx-auto text-center">
-        <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.02em] leading-[1.05]">
-          El diagnóstico es gratuito y sin compromiso.
+        {/* [1] Overline naranja */}
+        <div className="overline text-xs uppercase font-medium mb-5 reveal chip-mono" style={{ color: 'var(--secondary)' }}>Diagnóstico gratuito</div>
+        <h2 className="reveal text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.02em] leading-[1.05]" data-delay="80">
+          El diagnóstico es gratuito<br />
+          <span style={{ color: 'var(--secondary)' }}>y sin compromiso.</span>
         </h2>
-        <p className="reveal text-white/80 text-base md:text-lg mt-5 max-w-2xl mx-auto leading-relaxed" data-delay="80">
+        <p className="reveal text-white/80 text-base md:text-lg mt-6 max-w-xl mx-auto leading-relaxed" data-delay="160">
           En 45 minutos te decimos exactamente qué puede mejorar en tu negocio y cómo. Sin rodeos.
         </p>
-        <div className="reveal mt-9 flex flex-col items-center gap-4" data-delay="160">
-          <a href={WHATSAPP} className="inline-flex items-center gap-2.5 bg-white text-ink px-9 py-4 rounded-xl font-semibold text-lg hover:scale-[1.03] transition-transform shadow-xl">
+        <div className="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-4" data-delay="240">
+          <a href={WHATSAPP} className="inline-flex items-center gap-2.5 bg-secondary hover:bg-[#e8913a] text-white px-10 py-4 rounded-xl font-semibold text-lg hover:scale-[1.03] transition-all shadow-[0_8px_32px_-8px_rgba(244,162,89,0.6)]">
             <Icon name="whatsapp" className="w-5 h-5" />
             Quiero mi diagnóstico gratuito
           </a>
-          <a href={WHATSAPP} className="inline-flex items-center gap-2 text-white/85 hover:text-white text-sm transition-colors">
-            <Icon name="whatsapp" className="w-4 h-4" />
-            También puedes escribirnos por WhatsApp
+          <a href={`mailto:hola@malia.ai`} className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors">
+            <Icon name="mail" className="w-4 h-4" />
+            hola@malia.ai
           </a>
         </div>
       </div>
@@ -669,29 +666,40 @@ function CTAFinal() {
 }
 
 /* ============================================================
-   FOOTER
+   FOOTER — [7] más presencia visual
 ============================================================ */
 function Footer() {
   return (
     <footer className="relative bg-ink text-white pt-16 lg:pt-20 pb-10 px-6 md:px-12 overflow-hidden topo">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-12 gap-10 items-start">
-          <div className="md:col-span-6">
-            <div className="flex items-center gap-2.5 mb-4">
-              <span className="relative inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white/95">
-                <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
-                  <path d="M3 17 Q 7 11, 12 14 T 21 12" stroke="#0A4B78" strokeWidth="2.4" fill="none" strokeLinecap="round" />
+          <div className="md:col-span-5">
+            {/* Logo más grande */}
+            <div className="flex items-center gap-3 mb-5">
+              <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white/95">
+                <svg viewBox="0 0 24 24" className="w-6 h-6" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="lg-footer" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stopColor="#0A4B78" />
+                      <stop offset="1" stopColor="#2A9D8F" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M3 17 Q 7 11, 12 14 T 21 12" stroke="url(#lg-footer)" strokeWidth="2.4" fill="none" strokeLinecap="round" />
                   <circle cx="12" cy="8" r="2" fill="#F4A259" />
                 </svg>
               </span>
-              <span className="text-2xl font-semibold tracking-tight">Malia</span>
+              <span className="text-3xl font-semibold tracking-tight">Malia</span>
             </div>
-            <p className="text-white/70 text-[15px] max-w-sm leading-relaxed">El consultor tecnológico de Barbate.</p>
+            <p className="text-white/60 text-[14px] max-w-xs leading-relaxed mb-4">El consultor tecnológico de Barbate.</p>
+            {/* Tagline en naranja */}
+            <span className="chip-mono text-[11px] uppercase tracking-widest px-3 py-1.5 rounded-full border" style={{ color: 'var(--secondary)', borderColor: 'rgba(244,162,89,0.25)' }}>
+              Inteligencia Artificial · Barbate
+            </span>
           </div>
 
           <div className="md:col-span-3">
-            <div className="chip-mono text-[10px] uppercase tracking-widest text-secondary mb-4">Navega</div>
-            <ul className="space-y-2.5 text-sm text-white/80">
+            <div className="chip-mono text-[10px] uppercase tracking-widest mb-4" style={{ color: 'var(--secondary)' }}>Navega</div>
+            <ul className="space-y-2.5 text-sm text-white/70">
               <li><a href="#como-funciona" className="hover:text-white transition-colors">Cómo funciona</a></li>
               <li><a href="#casos" className="hover:text-white transition-colors">Casos</a></li>
               <li><a href="#contacto" className="hover:text-white transition-colors">Contacto</a></li>
@@ -699,23 +707,23 @@ function Footer() {
             </ul>
           </div>
 
-          <div className="md:col-span-3">
-            <div className="chip-mono text-[10px] uppercase tracking-widest text-secondary mb-4">Hablamos</div>
-            <ul className="space-y-3 text-sm text-white/80">
+          <div className="md:col-span-4">
+            <div className="chip-mono text-[10px] uppercase tracking-widest mb-4" style={{ color: 'var(--secondary)' }}>Hablamos</div>
+            <ul className="space-y-3 text-sm text-white/70">
               <li className="flex items-center gap-2.5">
-                <Icon name="pin" className="w-4 h-4 text-secondary flex-shrink-0" />
+                <Icon name="pin" className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--secondary)' }} />
                 Barbate, Cádiz
               </li>
               <li className="flex items-center gap-2.5">
-                <Icon name="mail" className="w-4 h-4 text-secondary flex-shrink-0" />
+                <Icon name="mail" className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--secondary)' }} />
                 <a href="mailto:hola@malia.ai" className="hover:text-white transition-colors">hola@malia.ai</a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Icon name="whatsapp" className="w-4 h-4 text-secondary flex-shrink-0" />
+                <Icon name="whatsapp" className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--secondary)' }} />
                 <a href={WHATSAPP} className="hover:text-white transition-colors">WhatsApp</a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Icon name="linkedin" className="w-4 h-4 text-secondary flex-shrink-0" />
+                <Icon name="linkedin" className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--secondary)' }} />
                 <a href="https://www.linkedin.com/in/manuel-malia-vidal-921778224/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
               </li>
             </ul>
@@ -723,8 +731,8 @@ function Footer() {
         </div>
 
         <div className="rule-thin my-10"></div>
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-[12px] text-white/55">
-          <span>© 2026 Malia · Hecho en Barbate, frente al Atlántico.</span>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-[12px] text-white/40">
+          <span>© 2025 Malia · Hecho en Barbate, frente al Atlántico.</span>
           <span className="chip-mono uppercase tracking-widest">El consultor tecnológico de Barbate</span>
         </div>
       </div>
