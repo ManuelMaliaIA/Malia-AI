@@ -1,4 +1,4 @@
-const { useState, useEffect, useRef, useMemo } = React;
+﻿const { useState, useEffect, useRef, useMemo } = React;
 
 const WHATSAPP = 'https://wa.me/34611459336';
 
@@ -54,7 +54,7 @@ function AnimatedHeadline({ lines, initialDelay = 200, perChar = 30, className =
     <h1 className={className} aria-label={lines.join(' ')}>
       {flat.map((item, i) => {
         if (item.br) return <br key={i} />;
-        const c = item.ch === ' ' ? ' ' : item.ch;
+        const c = item.ch === ' ' ? ' ' : item.ch;
         return <span key={i} className={'char ' + (i < shown ? 'in' : '')}>{c}</span>;
       })}
     </h1>
