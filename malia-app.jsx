@@ -704,9 +704,9 @@ function CTAFinal() {
             <Icon name="whatsapp" className="w-5 h-5" />
             Quiero mi diagnóstico gratuito
           </a>
-          <a href={`mailto:hola@malia.ai`} className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors">
+          <a href={`mailto:manuelmaliaempr@gmail.com`} className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors">
             <Icon name="mail" className="w-4 h-4" />
-            hola@malia.ai
+            manuelmaliaempr@gmail.com
           </a>
         </div>
       </div>
@@ -765,7 +765,7 @@ function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Icon name="mail" className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--secondary)' }} />
-                <a href="mailto:hola@malia.ai" className="hover:text-white transition-colors">hola@malia.ai</a>
+                <a href="mailto:manuelmaliaempr@gmail.com" className="hover:text-white transition-colors">manuelmaliaempr@gmail.com</a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Icon name="whatsapp" className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--secondary)' }} />
