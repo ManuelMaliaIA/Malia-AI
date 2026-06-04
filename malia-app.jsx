@@ -514,13 +514,13 @@ function Quienes() {
           <div className="bg-white rounded-2xl shadow-[0_8px_40px_-12px_rgba(10,75,120,0.18)] border border-black/[0.06] overflow-hidden">
 
             <div className="h-24 relative overflow-hidden">
-              <img src="assets/banner-linkedin.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
+              <img src="/assets/banner-linkedin.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
             </div>
 
             <div className="px-6 pb-6">
               <div className="relative -mt-10 mb-3 inline-flex">
                 <img
-                  src="assets/profile.jpg"
+                  src="/assets/profile.jpg"
                   alt="Manuel Malia"
                   className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-lg"
                 />
