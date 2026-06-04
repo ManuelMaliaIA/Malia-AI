@@ -693,48 +693,88 @@ function DemoWhatsApp() {
 function DemoSaas() {
   return (
     <div className="w-full p-4 md:p-6">
-      <div className="bg-white rounded-xl overflow-hidden shadow border border-black/[0.06] max-w-2xl mx-auto">
-        <div className="bg-ink px-5 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-lg bg-secondary flex items-center justify-center">
-              <Icon name="grid" className="w-4 h-4 text-white" />
-            </div>
-            <span className="text-[13px] font-semibold text-white">Panel de presupuestos</span>
-          </div>
-          <span className="chip-mono text-[10px] text-white/40">Tu empresa · v1.0</span>
-        </div>
-        <div className="p-5">
-          <div className="grid grid-cols-3 gap-3 mb-5">
-            {[
-              { label: 'Facturado este mes', val: '12.400€', color: 'text-primary' },
-              { label: 'Pendientes de respuesta', val: '4', color: 'text-secondary' },
-              { label: 'Aceptados', val: '8', color: 'text-accent' },
-            ].map((s, i) => (
-              <div key={i} className="bg-[#F8F9FA] rounded-xl p-3 text-center border border-black/[0.04]">
-                <div className={`text-[20px] font-bold mb-0.5 ${s.color}`}>{s.val}</div>
-                <div className="text-[11px] text-muted leading-tight">{s.label}</div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+
+        {/* Izquierda — WhatsApp del cliente */}
+        <div>
+          <div className="text-[11px] chip-mono uppercase tracking-widest text-muted mb-2 text-center">① Cliente pide por WhatsApp</div>
+          <div className="bg-white rounded-xl overflow-hidden shadow border border-black/[0.06]">
+            <div className="px-4 py-2.5 flex items-center gap-2.5" style={{ background: '#075E54' }}>
+              <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white text-[11px] font-bold">🍔</div>
+              <div>
+                <div className="text-[12px] font-semibold text-white">Burger Barbate</div>
+                <div className="text-[10px] text-white/60">Agente activo</div>
               </div>
-            ))}
+            </div>
+            <div className="p-3 space-y-2" style={{ background: '#ECE5DD' }}>
+              {[
+                { msg: 'Hola! Quiero pedir para recoger', right: false },
+                { msg: '¡Hola! Claro, aquí tienes el menú 👇\n🍔 Clásica — 8€\n🔥 Picante — 9€\n🧀 Doble queso — 10€\n¿Qué te pongo?', right: true },
+                { msg: '2 clásicas y una picante, con patatas', right: false },
+                { msg: '¿Nombre para el pedido?', right: true },
+                { msg: 'Carlos', right: false },
+                { msg: '✅ Pedido registrado, Carlos! Total: 25€. Listo en ~15 min. Te avisamos cuando esté.', right: true },
+              ].map((m, i) => (
+                <div key={i} className={`flex ${m.right ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[85%] rounded-2xl px-3 py-1.5 text-[11px] leading-snug shadow-sm whitespace-pre-line
+                    ${m.right ? 'text-ink rounded-tr-sm' : 'bg-white text-ink rounded-tl-sm'}`}
+                    style={m.right ? { background: '#DCF8C6' } : {}}>
+                    {m.msg}
+                    {m.right && <span className="block text-right text-[9px] text-gray-400 mt-0.5">✓✓</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="text-[11px] font-semibold text-muted uppercase tracking-widest mb-2 chip-mono">Últimos presupuestos</div>
-          <div className="space-y-1.5">
-            {[
-              { client: 'Restaurante El Faro', amount: '2.400€', status: 'Aceptado', color: 'bg-green-100 text-green-700' },
-              { client: 'Bar La Marina', amount: '850€', status: 'Pendiente', color: 'bg-yellow-100 text-yellow-700' },
-              { client: 'Cafetería Sol', amount: '1.200€', status: 'Enviado', color: 'bg-blue-100 text-blue-700' },
-              { client: 'Hostal Brisa', amount: '3.100€', status: 'Aceptado', color: 'bg-green-100 text-green-700' },
-            ].map((r, i) => (
-              <div key={i} className="flex items-center justify-between py-2 px-3 rounded-xl hover:bg-[#F8F9FA] transition-colors">
-                <span className="text-[13px] text-ink font-medium">{r.client}</span>
-                <div className="flex items-center gap-3">
-                  <span className="text-[13px] font-semibold text-ink">{r.amount}</span>
-                  <span className={`text-[11px] chip-mono rounded-full px-2.5 py-0.5 ${r.color}`}>{r.status}</span>
+        </div>
+
+        {/* Derecha — Tablet del encargado */}
+        <div>
+          <div className="text-[11px] chip-mono uppercase tracking-widest text-muted mb-2 text-center">② Llega solo a la tablet</div>
+          <div className="bg-white rounded-xl overflow-hidden shadow border border-black/[0.06]">
+            <div className="bg-ink px-4 py-2.5 flex items-center justify-between">
+              <span className="text-[12px] font-semibold text-white">🍔 Burger Barbate · Cocina</span>
+              <span className="text-[10px] chip-mono text-white/40">EN DIRECTO</span>
+            </div>
+            <div className="p-3 space-y-2.5">
+              {/* Pedido nuevo — destacado */}
+              <div className="rounded-xl border-2 border-secondary/60 bg-secondary/5 p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    <span className="text-[12px] font-bold text-ink">Pedido #24 · Carlos</span>
+                  </div>
+                  <span className="chip-mono text-[10px] bg-secondary text-white rounded-full px-2 py-0.5">NUEVO</span>
+                </div>
+                <ul className="text-[12px] text-gray-600 space-y-0.5 mb-2">
+                  <li>× 2 &nbsp; Clásica</li>
+                  <li>× 1 &nbsp; Picante</li>
+                  <li>× 3 &nbsp; Patatas</li>
+                </ul>
+                <div className="flex items-center justify-between pt-2 border-t border-black/[0.06]">
+                  <span className="text-[12px] font-bold text-ink">Total: 25€ · Recogida</span>
+                  <button className="text-[11px] chip-mono bg-accent text-white rounded-lg px-3 py-1 font-semibold">Aceptar</button>
                 </div>
               </div>
-            ))}
+              {/* Pedidos anteriores */}
+              {[
+                { n: '#23', name: 'Ana', items: '1 Doble queso + patatas', total: '12€', status: 'En cocina', color: 'text-primary bg-primary/10' },
+                { n: '#22', name: 'Pedro', items: '2 Clásicas', total: '16€', status: 'Listo', color: 'text-green-700 bg-green-100' },
+              ].map((p, i) => (
+                <div key={i} className="rounded-xl bg-[#F8F9FA] p-3 flex items-center justify-between">
+                  <div>
+                    <span className="text-[12px] font-semibold text-ink">{p.n} · {p.name}</span>
+                    <p className="text-[11px] text-muted">{p.items} · {p.total}</p>
+                  </div>
+                  <span className={`chip-mono text-[10px] rounded-full px-2.5 py-0.5 ${p.color}`}>{p.status}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+
       </div>
+      <p className="text-center text-[12px] text-muted mt-4 chip-mono">El encargado no toca el WhatsApp. El pedido llega solo.</p>
     </div>
   );
 }
