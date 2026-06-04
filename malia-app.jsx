@@ -208,11 +208,14 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="relative min-h-screen w-full overflow-hidden">
-      <div className="hero-stage" aria-hidden="true">
-        <div className="hero-img"></div>
-        <div className="hero-shimmer"></div>
+      <div className="hero-stage">
+        <img
+          src="/assets/hero-barbate.png"
+          alt="Vista aérea de la playa de Barbate al atardecer con edificios blancos y agua turquesa"
+          className="hero-img"
+        />
+        <div className="hero-shimmer" aria-hidden="true"></div>
       </div>
-      <span className="sr-only">Vista aérea de la playa de Barbate al atardecer con edificios blancos y agua turquesa.</span>
 
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/40 to-transparent pointer-events-none" />
 
@@ -495,6 +498,29 @@ function Casos() {
 }
 
 /* ============================================================
+   PROFILE PHOTO — con fallback a iniciales
+============================================================ */
+function ProfilePhoto() {
+  const [error, setError] = useState(false);
+  if (error) {
+    return (
+      <div className="w-20 h-20 rounded-full border-4 border-white shadow-lg flex items-center justify-center text-white text-2xl font-semibold select-none"
+           style={{ background: 'linear-gradient(135deg, #0A4B78, #2A9D8F)' }}>
+        MM
+      </div>
+    );
+  }
+  return (
+    <img
+      src="/assets/profile.jpg"
+      alt="Manuel Malia"
+      className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-lg"
+      onError={() => setError(true)}
+    />
+  );
+}
+
+/* ============================================================
    QUIÉNES SOMOS — LinkedIn profile card
 ============================================================ */
 function Quienes() {
@@ -519,11 +545,7 @@ function Quienes() {
 
             <div className="px-6 pb-6">
               <div className="relative -mt-10 mb-3 inline-flex">
-                <img
-                  src="/assets/profile.jpg"
-                  alt="Manuel Malia"
-                  className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-lg"
-                />
+                <ProfilePhoto />
                 <span className="absolute -bottom-0.5 -right-0.5 w-6 h-6 rounded-full bg-[#0A66C2] flex items-center justify-center border-2 border-white">
                   <Icon name="linkedin" className="w-3 h-3 text-white" />
                 </span>
