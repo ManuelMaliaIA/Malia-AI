@@ -462,83 +462,201 @@ function StatsStrip() {
 }
 
 /* ============================================================
-   SOLUCIONES QUE CONSTRUIMOS
+   EJEMPLOS — demo visual de los 4 servicios
 ============================================================ */
 function Casos() {
-  const casos = [
-    {
-      icon: 'clock',
-      badge: 'Hostelería',
-      title: 'Tu restaurante lleno, sin coger el teléfono',
-      body: 'Un agente de IA gestiona tus reservas solo. Recibe la petición, comprueba disponibilidad, confirma la mesa y recuerda la cita al cliente automáticamente. Sin llamadas perdidas, sin errores, sin que tengas que intervenir.',
-      stat: '24/7',
-      statLabel: 'gestionando reservas',
-    },
-    {
-      icon: 'webspark',
-      badge: 'Cualquier negocio',
-      title: 'Que te encuentren antes que a la competencia',
-      body: 'Una web rápida, bonita y optimizada para Google. Adaptada a tu negocio, con todo lo que tu cliente necesita encontrar. Visible para cualquiera que busque lo que tú ofreces en Barbate y la costa de Cádiz.',
-      stat: '+visibilidad',
-      statLabel: 'en Google',
-    },
-    {
-      icon: 'cycle',
-      badge: 'Cualquier negocio',
-      title: 'Tu negocio funcionando solo mientras tú te dedicas a lo importante',
-      body: 'Presupuestos, facturas, recordatorios, respuestas automáticas, gestión de clientes… Construimos la herramienta exacta que necesita tu negocio para que todo ocurra solo, sin que toques nada. Da igual el sector.',
-      stat: '0',
-      statLabel: 'intervención manual',
-    },
-  ];
-
   return (
-    <section id="casos" className="relative pt-20 lg:pt-28 pb-12 lg:pb-16 px-6 md:px-12 bg-[#F8F9FA]">
+    <section id="casos" className="relative py-20 lg:py-28 px-6 md:px-12 bg-[#F8F9FA]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
-          <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">Lo que construimos</div>
+          <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">En la práctica</div>
           <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-[-0.02em] leading-[1.05]" data-delay="80">
-            Soluciones que construimos con IA.
+            Así se ve cada servicio.
           </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-5 lg:gap-6">
-          {casos.map((c, i) => (
-            <article
-              key={i}
-              className="reveal bg-white rounded-2xl p-7 lg:p-8 border border-black/[0.06] shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)] flex flex-col hover:-translate-y-1 transition-all duration-300"
-              data-delay={i * 120}
-            >
-              <div className="flex items-center justify-between mb-5">
-                <span className="inline-flex w-12 h-12 rounded-full bg-primary/[0.08] items-center justify-center">
-                  <Icon name={c.icon} className="w-6 h-6" style={{ color: 'var(--primary)' }} />
-                </span>
-                <span className="chip-mono text-[10px] uppercase tracking-widest text-accent bg-accent/[0.12] rounded-full px-3 py-1.5">{c.badge}</span>
-              </div>
-
-              <h3 className="text-xl font-semibold text-ink mb-3 leading-snug tracking-[-0.01em]">{c.title}</h3>
-              <p className="text-[15px] text-gray-600 leading-relaxed">{c.body}</p>
-
-              <div className="mt-6 pt-5 border-t border-black/[0.06]">
-                <div className="text-3xl md:text-4xl font-semibold text-primary tracking-[-0.03em] leading-none">{c.stat}</div>
-                <div className="text-[13px] text-muted mt-2">{c.statLabel}</div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="reveal mt-12 text-center" data-delay="160">
-          <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-6">
-            ¿No ves tu caso aquí? Cuéntanoslo. <span className="text-ink font-medium">Si tiene solución, la construimos.</span>
+          <p className="reveal text-muted text-base md:text-lg mt-4 max-w-xl mx-auto" data-delay="160">
+            Ejemplos reales de lo que construimos para nuestros clientes.
           </p>
-          <a href={WHATSAPP} className="inline-flex items-center gap-2.5 text-white px-7 py-3.5 rounded-lg font-medium hover:scale-[1.02] transition-all" style={{ background: 'var(--primary)' }}>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+          {/* 1 — WEB */}
+          <article className="reveal bg-white rounded-2xl border border-black/[0.06] shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)] overflow-hidden" data-delay="0">
+            <div className="px-6 pt-6 pb-4 border-b border-black/[0.05]">
+              <span className="chip-mono text-[10px] uppercase tracking-widest text-white rounded-full px-3 py-1 bg-primary">Página web</span>
+              <h3 className="text-lg font-semibold text-ink mt-3 mb-1 tracking-[-0.01em]">Tu negocio en Google, siempre disponible</h3>
+              <p className="text-[13px] text-muted">Web rápida y bonita con todo lo que tu cliente necesita encontrar.</p>
+            </div>
+            {/* Browser mockup */}
+            <div className="bg-[#F1F3F5] px-4 pt-3 pb-4">
+              <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-black/[0.06]">
+                {/* Browser bar */}
+                <div className="bg-[#E8EAED] px-3 py-2 flex items-center gap-2">
+                  <div className="flex gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-red-400"/><span className="w-2.5 h-2.5 rounded-full bg-yellow-400"/><span className="w-2.5 h-2.5 rounded-full bg-green-400"/></div>
+                  <div className="flex-1 bg-white rounded-md px-3 py-0.5 text-[11px] text-gray-400 font-mono">elfarodebarbate.com</div>
+                </div>
+                {/* Page content */}
+                <div className="p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[13px] font-bold text-ink">El Faro · Barbate</span>
+                    <div className="flex gap-2 text-[11px] text-muted">
+                      <span>La carta</span><span>Reservar</span><span>Contacto</span>
+                    </div>
+                  </div>
+                  <div className="w-full h-16 rounded-lg bg-gradient-to-r from-[#0A4B78]/20 to-[#2A9D8F]/20 flex items-center justify-center mb-3">
+                    <span className="text-[11px] text-primary/60 font-medium">Foto del local</span>
+                  </div>
+                  <p className="text-[12px] font-semibold text-ink mb-1">Atún rojo de almadraba y la mejor terraza de Barbate</p>
+                  <div className="flex gap-2 mt-3">
+                    <span className="text-[11px] bg-primary text-white rounded-lg px-3 py-1.5 font-medium">Reservar mesa</span>
+                    <span className="text-[11px] border border-black/10 rounded-lg px-3 py-1.5 text-muted">Ver carta</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {/* 2 — AGENTE DE RESERVAS */}
+          <article className="reveal bg-white rounded-2xl border border-black/[0.06] shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)] overflow-hidden" data-delay="100">
+            <div className="px-6 pt-6 pb-4 border-b border-black/[0.05]">
+              <span className="chip-mono text-[10px] uppercase tracking-widest text-white rounded-full px-3 py-1 bg-accent">Agente de reservas</span>
+              <h3 className="text-lg font-semibold text-ink mt-3 mb-1 tracking-[-0.01em]">Llaman, el agente apunta. Tú ni te enteras.</h3>
+              <p className="text-[13px] text-muted">Gestiona llamadas y confirma mesas sin intervención humana.</p>
+            </div>
+            {/* Phone call mockup */}
+            <div className="bg-[#F1F3F5] px-4 pt-3 pb-4">
+              <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-black/[0.06]">
+                <div className="bg-primary px-4 py-2.5 flex items-center gap-3">
+                  <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
+                    <Icon name="speak" className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-[12px] font-semibold text-white">Malia · Agente de voz</div>
+                    <div className="text-[10px] text-white/70">Llamada en curso · 0:43</div>
+                  </div>
+                  <div className="ml-auto flex gap-1">
+                    {[1,2,3,4].map(i => <span key={i} className="bar text-white/80" style={{ animationDelay: `${i*0.15}s`, height: '14px' }} />)}
+                  </div>
+                </div>
+                <div className="p-4 space-y-2.5">
+                  {[
+                    { who: 'Cliente', msg: 'Hola, quiero reservar para mañana por la noche.', right: false },
+                    { who: 'Agente', msg: 'Perfecto, ¿para cuántas personas?', right: true },
+                    { who: 'Cliente', msg: 'Cuatro personas, sobre las nueve.', right: false },
+                    { who: 'Agente', msg: '¡Listo! Mesa para 4 mañana a las 21:00h. Te llega confirmación por WhatsApp ahora mismo.', right: true },
+                  ].map((m, i) => (
+                    <div key={i} className={`flex ${m.right ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`max-w-[80%] rounded-2xl px-3 py-2 text-[12px] leading-snug
+                        ${m.right ? 'bg-primary text-white rounded-tr-sm' : 'bg-[#F1F3F5] text-ink rounded-tl-sm'}`}>
+                        <span className={`block text-[10px] font-semibold mb-0.5 ${m.right ? 'text-white/70' : 'text-muted'}`}>{m.who}</span>
+                        {m.msg}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {/* 3 — AGENTE WHATSAPP */}
+          <article className="reveal bg-white rounded-2xl border border-black/[0.06] shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)] overflow-hidden" data-delay="200">
+            <div className="px-6 pt-6 pb-4 border-b border-black/[0.05]">
+              <span className="chip-mono text-[10px] uppercase tracking-widest text-white rounded-full px-3 py-1" style={{ background: '#25D366' }}>Agente de WhatsApp</span>
+              <h3 className="text-lg font-semibold text-ink mt-3 mb-1 tracking-[-0.01em]">Atiende mensajes mientras tú trabajas.</h3>
+              <p className="text-[13px] text-muted">Responde dudas, filtra clientes y te pasa solo los importantes.</p>
+            </div>
+            {/* WhatsApp mockup */}
+            <div className="bg-[#ECE5DD] px-4 pt-3 pb-4">
+              <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-black/[0.06]">
+                <div className="px-4 py-2.5 flex items-center gap-3" style={{ background: '#075E54' }}>
+                  <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-[11px]">TN</div>
+                  <div>
+                    <div className="text-[12px] font-semibold text-white">Tu Negocio</div>
+                    <div className="text-[10px] text-white/70">Agente activo · 24/7</div>
+                  </div>
+                </div>
+                <div className="bg-[#ECE5DD] p-3 space-y-2">
+                  {[
+                    { msg: '¿Tenéis mesa libre esta noche para dos?', right: false },
+                    { msg: '¡Hola! Sí tenemos disponibilidad. ¿A qué hora os vendría bien?', right: true },
+                    { msg: 'Sobre las 21h, ¿os va bien?', right: false },
+                    { msg: 'Perfecto. ¿Me dices el nombre para la reserva?', right: true },
+                    { msg: 'López', right: false },
+                    { msg: '✅ Mesa para 2 a las 21:00h a nombre de López. ¡Hasta luego!', right: true },
+                  ].map((m, i) => (
+                    <div key={i} className={`flex ${m.right ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`max-w-[80%] rounded-2xl px-3 py-1.5 text-[12px] leading-snug shadow-sm
+                        ${m.right ? 'text-ink rounded-tr-sm' : 'bg-white text-ink rounded-tl-sm'}`}
+                        style={m.right ? { background: '#DCF8C6' } : {}}>
+                        {m.msg}
+                        <span className="block text-right text-[10px] text-gray-400 mt-0.5">{m.right ? '✓✓' : ''}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {/* 4 — SAAS A MEDIDA */}
+          <article className="reveal bg-white rounded-2xl border border-black/[0.06] shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)] overflow-hidden" data-delay="300">
+            <div className="px-6 pt-6 pb-4 border-b border-black/[0.05]">
+              <span className="chip-mono text-[10px] uppercase tracking-widest text-white rounded-full px-3 py-1" style={{ background: 'var(--secondary)' }}>SaaS a medida</span>
+              <h3 className="text-lg font-semibold text-ink mt-3 mb-1 tracking-[-0.01em]">Tu herramienta, para tu forma de trabajar.</h3>
+              <p className="text-[13px] text-muted">Lo que haces a mano cada día, funcionando solo y sin pagar licencias.</p>
+            </div>
+            {/* Dashboard mockup */}
+            <div className="bg-[#F1F3F5] px-4 pt-3 pb-4">
+              <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-black/[0.06]">
+                <div className="bg-ink px-4 py-2.5 flex items-center justify-between">
+                  <span className="text-[12px] font-semibold text-white">Panel de presupuestos</span>
+                  <span className="text-[10px] text-white/50 chip-mono">v1.0 · Tu empresa</span>
+                </div>
+                <div className="p-3">
+                  <div className="grid grid-cols-3 gap-2 mb-3">
+                    {[
+                      { label: 'Este mes', val: '12.400€', color: 'text-primary' },
+                      { label: 'Pendientes', val: '4', color: 'text-secondary' },
+                      { label: 'Aceptados', val: '8', color: 'text-accent' },
+                    ].map((s, i) => (
+                      <div key={i} className="bg-[#F8F9FA] rounded-lg p-2 text-center">
+                        <div className={`text-[15px] font-bold ${s.color}`}>{s.val}</div>
+                        <div className="text-[10px] text-muted">{s.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="space-y-1.5">
+                    {[
+                      { client: 'Restaurante El Faro', amount: '2.400€', status: 'Aceptado', color: 'bg-green-100 text-green-700' },
+                      { client: 'Bar La Marina', amount: '850€', status: 'Pendiente', color: 'bg-yellow-100 text-yellow-700' },
+                      { client: 'Cafetería Sol', amount: '1.200€', status: 'Enviado', color: 'bg-blue-100 text-blue-700' },
+                    ].map((r, i) => (
+                      <div key={i} className="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-[#F8F9FA] transition-colors">
+                        <span className="text-[12px] text-ink font-medium">{r.client}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[12px] font-semibold text-ink">{r.amount}</span>
+                          <span className={`text-[10px] chip-mono rounded-full px-2 py-0.5 ${r.color}`}>{r.status}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div className="reveal mt-12 text-center" data-delay="200">
+          <p className="text-lg text-gray-700 max-w-xl mx-auto mb-6">
+            ¿Quieres ver cómo quedaría para tu negocio? <span className="text-ink font-medium">Cuéntanoslo y te lo enseñamos.</span>
+          </p>
+          <a href={WHATSAPP} className="inline-flex items-center gap-2.5 bg-primary text-white px-7 py-3.5 rounded-lg font-medium hover:scale-[1.02] transition-all">
             <Icon name="whatsapp" className="w-4 h-4" />
             Escríbenos por WhatsApp
           </a>
         </div>
       </div>
-      {/* [3] Transición suave */}
-      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white pointer-events-none" aria-hidden="true" />
     </section>
   );
 }
