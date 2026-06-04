@@ -326,10 +326,9 @@ function Dolor() {
     <section className="relative bg-gradient-to-b from-white to-[#F8F9FA] py-20 lg:py-32 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14 lg:mb-16">
-          {/* [1] Overline en naranja */}
-          <div className="overline text-xs uppercase font-medium mb-4 reveal" style={{ color: 'var(--secondary)' }}>Lo que podemos construir</div>
+          <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">Lo que podemos construir</div>
           <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-[-0.02em] leading-[1.05]" data-delay="80">
-            Creamos soluciones con IA <span style={{ color: 'var(--secondary)' }}>a medida</span> de tu negocio.
+            Creamos soluciones con IA a medida de tu negocio.
           </h2>
           <p className="reveal text-muted text-base md:text-lg mt-5 max-w-2xl mx-auto" data-delay="160">
             Esto es solo una muestra de lo que podemos construir para ti.
@@ -366,8 +365,7 @@ function ComoFunciona() {
       <div className="absolute inset-0 dot-grid opacity-40 pointer-events-none" aria-hidden="true" />
       <div className="relative max-w-6xl mx-auto">
         <div className="text-center mb-14">
-          {/* [1] Overline naranja */}
-          <div className="overline text-xs uppercase font-medium mb-4 reveal" style={{ color: 'var(--secondary)' }}>Cómo trabajamos</div>
+          <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">Cómo trabajamos</div>
           <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-[-0.02em] leading-[1.05]" data-delay="80">
             Así trabajamos.
           </h2>
@@ -399,19 +397,49 @@ function ComoFunciona() {
         </div>
 
         <div className="reveal mt-12 liquid-glass-light rounded-2xl p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center gap-5" data-delay="120">
-          <div className="w-12 h-12 rounded-full text-white flex items-center justify-center flex-shrink-0" style={{ background: 'var(--secondary)' }}>
+          <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0">
             <Icon name="mark" className="w-6 h-6" />
           </div>
           <div className="flex-1">
-            <div className="text-[13px] uppercase chip-mono tracking-widest" style={{ color: 'var(--secondary)' }}>El primer paso es gratis</div>
+            <div className="text-[13px] uppercase chip-mono tracking-widest text-primary/70">El primer paso es gratis</div>
             <div className="text-ink text-[15px] mt-1">El diagnóstico no te cuesta nada. Si lo que vemos no te compensa, te lo decimos claro y no pasa nada.</div>
           </div>
-          <a href="#contacto" className="chip-mono text-[11px] uppercase text-white rounded-lg px-4 py-2.5 transition-colors whitespace-nowrap" style={{ background: 'var(--secondary)' }}>Pedir diagnóstico</a>
+          <a href="#contacto" className="chip-mono text-[11px] uppercase text-white bg-primary rounded-lg px-4 py-2.5 hover:bg-primary/85 transition-colors whitespace-nowrap">Pedir diagnóstico</a>
         </div>
       </div>
       {/* [3] Transición suave hacia la siguiente sección */}
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-[#F8F9FA] pointer-events-none" aria-hidden="true" />
     </section>
+  );
+}
+
+/* ============================================================
+   STATS STRIP — franja visual con foto de fondo
+============================================================ */
+function StatsStrip() {
+  const stats = [
+    { n: '45 min', label: 'Para saber exactamente qué puede mejorar en tu negocio' },
+    { n: '24/7',   label: 'Tus clientes atendidos, aunque estés durmiendo' },
+    { n: '0€',     label: 'El diagnóstico, sin coste ni compromiso' },
+  ];
+  return (
+    <div className="relative py-20 overflow-hidden">
+      {/* Foto de fondo con overlay oscuro */}
+      <div className="absolute inset-0">
+        <img src="/assets/hero-barbate.png" alt="" className="w-full h-full object-cover object-center" aria-hidden="true" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(7,47,77,0.92) 0%, rgba(10,75,120,0.88) 100%)' }} />
+      </div>
+      <div className="relative max-w-6xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 text-white text-center">
+          {stats.map((s, i) => (
+            <div key={i} className="reveal" data-delay={i * 120}>
+              <div className="text-5xl md:text-6xl font-bold tracking-[-0.03em] mb-3" style={{ color: 'var(--secondary)' }}>{s.n}</div>
+              <p className="text-white/75 text-[15px] leading-snug max-w-[200px] mx-auto">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -474,7 +502,7 @@ function Casos() {
               <p className="text-[15px] text-gray-600 leading-relaxed">{c.body}</p>
 
               <div className="mt-6 pt-5 border-t border-black/[0.06]">
-                <div className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-none" style={{ color: 'var(--secondary)' }}>{c.stat}</div>
+                <div className="text-3xl md:text-4xl font-semibold text-primary tracking-[-0.03em] leading-none">{c.stat}</div>
                 <div className="text-[13px] text-muted mt-2">{c.statLabel}</div>
               </div>
             </article>
@@ -622,9 +650,9 @@ function PorQue() {
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <div className="lg:col-span-5 lg:sticky lg:top-32">
-            <div className="overline text-xs uppercase font-medium mb-4 reveal" style={{ color: 'var(--secondary)' }}>Por qué Malia</div>
+            <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">Por qué Malia</div>
             <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-[-0.02em] leading-[1.05]" data-delay="80">
-              Por qué los negocios de Barbate <span style={{ color: 'var(--secondary)' }}>confían</span> en nosotros.
+              Por qué los negocios de Barbate confían en nosotros.
             </h2>
             <p className="reveal text-muted text-base md:text-lg mt-5 leading-relaxed" data-delay="160">
               No vendemos tecnología por vender. Resolvemos lo que te frena, te lo explicamos claro y nos quedamos cerca.
@@ -634,9 +662,8 @@ function PorQue() {
           <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4 lg:gap-5">
             {items.map((it, i) => (
               <div key={i} className="reveal bg-paper rounded-2xl p-6 border border-black/[0.05] hover:-translate-y-1 hover:shadow-md transition-all duration-300" data-delay={i * 90}>
-                {/* [6] Círculos en Por qué Malia */}
-                <span className="inline-flex w-11 h-11 rounded-full items-center justify-center mb-4" style={{ background: 'rgba(244,162,89,0.12)' }}>
-                  <Icon name={it.icon} className="w-6 h-6" style={{ color: 'var(--secondary)' }} />
+                <span className="inline-flex w-11 h-11 rounded-full bg-accent/[0.12] items-center justify-center mb-4">
+                  <Icon name={it.icon} className="w-6 h-6" style={{ color: 'var(--accent)' }} />
                 </span>
                 <h3 className="text-lg font-semibold text-ink mb-1.5 tracking-[-0.01em]">{it.k}</h3>
                 <p className="text-[14px] text-muted leading-relaxed">{it.v}</p>
@@ -773,6 +800,7 @@ function App() {
       <Hero />
       <Dolor />
       <ComoFunciona />
+      <StatsStrip />
       <Casos />
       <Quienes />
       <PorQue />
