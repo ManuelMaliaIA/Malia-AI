@@ -462,12 +462,47 @@ function StatsStrip() {
 }
 
 /* ============================================================
-   EJEMPLOS — demo visual de los 4 servicios
+   EJEMPLOS — carousel de demos visuales
 ============================================================ */
 function Casos() {
+  const [current, setCurrent] = useState(0);
+  const demos = [
+    {
+      badge: 'Página web',
+      badgeBg: 'var(--primary)',
+      title: 'Tu negocio en Google, siempre disponible.',
+      desc: 'Web rápida y bonita con carta digital, horarios, fotos, ubicación y botón de reserva o contacto directo. Optimizada para móvil y para aparecer cuando te buscan.',
+      demo: <DemoWeb />,
+    },
+    {
+      badge: 'Agente de reservas',
+      badgeBg: 'var(--accent)',
+      title: 'Llaman, el agente apunta. Tú ni te enteras.',
+      desc: 'Gestiona llamadas y confirma mesas sin intervención humana. Comprueba disponibilidad, confirma la mesa y manda WhatsApp al cliente. En cuatro idiomas, 24 horas al día.',
+      demo: <DemoReservas />,
+    },
+    {
+      badge: 'Agente de WhatsApp',
+      badgeBg: '#25D366',
+      title: 'Atiende mensajes mientras tú trabajas.',
+      desc: 'Responde dudas frecuentes, filtra clientes y te pasa solo los que necesitan tu atención directa. Nunca deja a nadie sin respuesta.',
+      demo: <DemoWhatsApp />,
+    },
+    {
+      badge: 'SaaS a medida',
+      badgeBg: 'var(--secondary)',
+      title: 'Tu herramienta, para tu forma de trabajar.',
+      desc: 'Una aplicación construida exactamente para tu negocio. Gestión de presupuestos, clientes, pedidos o informes — funcionando sola, sin pagar licencias mensuales a nadie.',
+      demo: <DemoSaas />,
+    },
+  ];
+  const prev = () => setCurrent(i => (i - 1 + demos.length) % demos.length);
+  const next = () => setCurrent(i => (i + 1) % demos.length);
+  const d = demos[current];
+
   return (
     <section id="casos" className="relative py-20 lg:py-28 px-6 md:px-12 bg-[#F8F9FA]">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
           <div className="overline text-xs uppercase font-medium text-accent mb-4 reveal">En la práctica</div>
           <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-[-0.02em] leading-[1.05]" data-delay="80">
@@ -478,7 +513,231 @@ function Casos() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        {/* Carousel */}
+        <div className="reveal" data-delay="120">
+          {/* Card */}
+          <div className="bg-white rounded-3xl border border-black/[0.06] shadow-[0_16px_60px_-20px_rgba(10,75,120,0.18)] overflow-hidden">
+            {/* Header */}
+            <div className="px-8 pt-8 pb-6 md:flex md:items-start md:gap-8">
+              <div className="flex-1">
+                <span className="chip-mono text-[11px] uppercase tracking-widest text-white rounded-full px-3 py-1.5 inline-block mb-4" style={{ background: d.badgeBg }}>{d.badge}</span>
+                <h3 className="text-2xl md:text-3xl font-bold text-ink tracking-[-0.02em] leading-tight mb-3">{d.title}</h3>
+                <p className="text-[15px] text-muted leading-relaxed max-w-lg">{d.desc}</p>
+              </div>
+              {/* Navegación desktop */}
+              <div className="hidden md:flex items-center gap-3 mt-2 flex-shrink-0">
+                <button onClick={prev} className="w-11 h-11 rounded-full border border-black/[0.1] flex items-center justify-center hover:border-primary hover:text-primary transition-colors text-muted" aria-label="Anterior">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <span className="chip-mono text-[12px] text-muted">{current + 1} / {demos.length}</span>
+                <button onClick={next} className="w-11 h-11 rounded-full border border-black/[0.1] flex items-center justify-center hover:border-primary hover:text-primary transition-colors text-muted" aria-label="Siguiente">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Demo area */}
+            <div className="bg-[#F1F3F5] mx-6 mb-6 rounded-2xl overflow-hidden min-h-[320px] flex items-center justify-center">
+              {d.demo}
+            </div>
+
+            {/* Navegación móvil + dots */}
+            <div className="flex items-center justify-between px-8 pb-7">
+              <button onClick={prev} className="md:hidden w-11 h-11 rounded-full border border-black/[0.1] flex items-center justify-center hover:border-primary hover:text-primary transition-colors text-muted" aria-label="Anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div className="flex items-center gap-2 mx-auto">
+                {demos.map((_, i) => (
+                  <button key={i} onClick={() => setCurrent(i)} className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-2.5' : 'w-2.5 h-2.5 bg-black/10 hover:bg-black/20'}`}
+                    style={i === current ? { background: d.badgeBg } : {}} aria-label={`Ir al ejemplo ${i + 1}`} />
+                ))}
+              </div>
+              <button onClick={next} className="md:hidden w-11 h-11 rounded-full border border-black/[0.1] flex items-center justify-center hover:border-primary hover:text-primary transition-colors text-muted" aria-label="Siguiente">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="reveal mt-10 text-center" data-delay="200">
+          <a href={WHATSAPP} className="inline-flex items-center gap-2.5 bg-primary text-white px-7 py-3.5 rounded-lg font-medium hover:scale-[1.02] transition-all">
+            <Icon name="whatsapp" className="w-4 h-4" />
+            Quiero ver cómo quedaría el mío
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DemoWeb() {
+  return (
+    <div className="w-full p-4 md:p-6">
+      <div className="bg-white rounded-xl overflow-hidden shadow border border-black/[0.06] max-w-2xl mx-auto">
+        <div className="bg-[#E8EAED] px-4 py-2.5 flex items-center gap-3">
+          <div className="flex gap-1.5"><span className="w-3 h-3 rounded-full bg-red-400"/><span className="w-3 h-3 rounded-full bg-yellow-400"/><span className="w-3 h-3 rounded-full bg-green-400"/></div>
+          <div className="flex-1 bg-white rounded-lg px-4 py-1 text-[12px] text-gray-400 font-mono">elfarodebarbate.com</div>
+        </div>
+        <div className="p-5">
+          <div className="flex items-center justify-between mb-4 pb-3 border-b border-black/[0.05]">
+            <span className="text-[15px] font-bold text-ink">🍽 El Faro · Barbate</span>
+            <div className="hidden sm:flex gap-4 text-[13px] text-muted">
+              <span className="hover:text-primary cursor-pointer">La carta</span>
+              <span className="hover:text-primary cursor-pointer">Galería</span>
+              <span className="hover:text-primary cursor-pointer">Contacto</span>
+            </div>
+          </div>
+          <div className="w-full h-28 rounded-xl bg-gradient-to-r from-[#0A4B78]/15 via-[#2A9D8F]/15 to-[#F4A259]/15 flex items-center justify-center mb-4 border border-black/[0.04]">
+            <span className="text-[13px] text-primary/50 font-medium">Foto del local · vista al mar</span>
+          </div>
+          <h4 className="text-[16px] font-bold text-ink mb-1">Atún rojo de almadraba y la mejor terraza de Barbate</h4>
+          <p className="text-[13px] text-muted mb-4">Abierto todos los días · 13:00–16:30 y 20:00–23:30 · C/ Ruiz de Alda, 4</p>
+          <div className="grid grid-cols-3 gap-2 mb-4">
+            {['Cazón en adobo', 'Atún encebollado', 'Tortillitas de camarones'].map((p, i) => (
+              <div key={i} className="rounded-lg border border-black/[0.06] p-2 text-center">
+                <div className="w-full h-10 bg-[#F8F9FA] rounded-md mb-1.5 flex items-center justify-center text-lg">🍽</div>
+                <span className="text-[11px] text-ink font-medium">{p}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <span className="flex-1 text-center text-[13px] bg-primary text-white rounded-xl px-4 py-2.5 font-semibold cursor-pointer hover:bg-primary/90 transition-colors">Reservar mesa</span>
+            <span className="text-[13px] border border-black/10 rounded-xl px-4 py-2.5 text-muted cursor-pointer hover:border-primary/30 transition-colors">Ver carta</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DemoReservas() {
+  return (
+    <div className="w-full p-4 md:p-6">
+      <div className="bg-white rounded-xl overflow-hidden shadow border border-black/[0.06] max-w-lg mx-auto">
+        <div className="px-5 py-3 flex items-center gap-3" style={{ background: 'var(--primary)' }}>
+          <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
+            <Icon name="speak" className="w-5 h-5 text-white" />
+          </div>
+          <div className="flex-1">
+            <div className="text-[13px] font-semibold text-white">Malia · Agente de voz</div>
+            <div className="text-[11px] text-white/70">Llamada en curso · 0:52</div>
+          </div>
+          <div className="flex gap-0.5 items-end h-5">
+            {[1,2,3,4,5].map(i => <span key={i} className="bar text-white/80" style={{ animationDelay: `${i*0.12}s` }} />)}
+          </div>
+        </div>
+        <div className="p-5 space-y-3">
+          {[
+            { who: 'Cliente', msg: 'Hola, quería reservar para mañana por la noche.', right: false },
+            { who: 'Agente', msg: '¡Perfecto! ¿Para cuántas personas serías?', right: true },
+            { who: 'Cliente', msg: 'Para cuatro personas, sobre las nueve.', right: false },
+            { who: 'Agente', msg: '¿A nombre de quién apunto la reserva?', right: true },
+            { who: 'Cliente', msg: 'García.', right: false },
+            { who: 'Agente', msg: '¡Listo! Mesa para 4 mañana a las 21:00h a nombre de García. Te llega confirmación por WhatsApp ahora mismo. ¡Hasta mañana!', right: true },
+          ].map((m, i) => (
+            <div key={i} className={`flex ${m.right ? 'justify-end' : 'justify-start'}`}>
+              <div className={`max-w-[78%] rounded-2xl px-4 py-2.5 text-[13px] leading-snug
+                ${m.right ? 'text-white rounded-tr-sm' : 'bg-[#F1F3F5] text-ink rounded-tl-sm'}`}
+                style={m.right ? { background: 'var(--primary)' } : {}}>
+                <span className={`block text-[10px] font-semibold mb-1 ${m.right ? 'text-white/60' : 'text-muted'}`}>{m.who}</span>
+                {m.msg}
+              </div>
+            </div>
+          ))}
+          <div className="flex items-center gap-2 pt-1">
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            <span className="text-[11px] text-muted">Reserva registrada automáticamente en tu sistema</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DemoWhatsApp() {
+  return (
+    <div className="w-full p-4 md:p-6">
+      <div className="bg-white rounded-xl overflow-hidden shadow border border-black/[0.06] max-w-lg mx-auto">
+        <div className="px-5 py-3 flex items-center gap-3" style={{ background: '#075E54' }}>
+          <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-[13px]">TN</div>
+          <div className="flex-1">
+            <div className="text-[13px] font-semibold text-white">Tu Negocio</div>
+            <div className="text-[11px] text-white/70">Agente activo · en línea</div>
+          </div>
+          <Icon name="whatsapp" className="w-5 h-5 text-white/70" />
+        </div>
+        <div className="p-4 space-y-2.5" style={{ background: '#ECE5DD' }}>
+          {[
+            { msg: 'Hola, ¿tenéis mesa libre esta noche para dos personas?', right: false },
+            { msg: '¡Hola! Sí tenemos disponibilidad esta noche. ¿A qué hora os vendría bien?', right: true },
+            { msg: 'Sobre las 21h, ¿os va bien?', right: false },
+            { msg: 'Perfecto. ¿Me dices el nombre para la reserva?', right: true },
+            { msg: 'López', right: false },
+            { msg: '✅ Mesa para 2 esta noche a las 21:00h a nombre de López confirmada. ¡Hasta luego!', right: true },
+          ].map((m, i) => (
+            <div key={i} className={`flex ${m.right ? 'justify-end' : 'justify-start'}`}>
+              <div className={`max-w-[78%] rounded-2xl px-4 py-2 text-[13px] leading-snug shadow-sm
+                ${m.right ? 'text-ink rounded-tr-sm' : 'bg-white text-ink rounded-tl-sm'}`}
+                style={m.right ? { background: '#DCF8C6' } : {}}>
+                {m.msg}
+                {m.right && <span className="block text-right text-[10px] text-gray-400 mt-0.5">✓✓</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DemoSaas() {
+  return (
+    <div className="w-full p-4 md:p-6">
+      <div className="bg-white rounded-xl overflow-hidden shadow border border-black/[0.06] max-w-2xl mx-auto">
+        <div className="bg-ink px-5 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-7 h-7 rounded-lg bg-secondary flex items-center justify-center">
+              <Icon name="grid" className="w-4 h-4 text-white" />
+            </div>
+            <span className="text-[13px] font-semibold text-white">Panel de presupuestos</span>
+          </div>
+          <span className="chip-mono text-[10px] text-white/40">Tu empresa · v1.0</span>
+        </div>
+        <div className="p-5">
+          <div className="grid grid-cols-3 gap-3 mb-5">
+            {[
+              { label: 'Facturado este mes', val: '12.400€', color: 'text-primary' },
+              { label: 'Pendientes de respuesta', val: '4', color: 'text-secondary' },
+              { label: 'Aceptados', val: '8', color: 'text-accent' },
+            ].map((s, i) => (
+              <div key={i} className="bg-[#F8F9FA] rounded-xl p-3 text-center border border-black/[0.04]">
+                <div className={`text-[20px] font-bold mb-0.5 ${s.color}`}>{s.val}</div>
+                <div className="text-[11px] text-muted leading-tight">{s.label}</div>
+              </div>
+            ))}
+          </div>
+          <div className="text-[11px] font-semibold text-muted uppercase tracking-widest mb-2 chip-mono">Últimos presupuestos</div>
+          <div className="space-y-1.5">
+            {[
+              { client: 'Restaurante El Faro', amount: '2.400€', status: 'Aceptado', color: 'bg-green-100 text-green-700' },
+              { client: 'Bar La Marina', amount: '850€', status: 'Pendiente', color: 'bg-yellow-100 text-yellow-700' },
+              { client: 'Cafetería Sol', amount: '1.200€', status: 'Enviado', color: 'bg-blue-100 text-blue-700' },
+              { client: 'Hostal Brisa', amount: '3.100€', status: 'Aceptado', color: 'bg-green-100 text-green-700' },
+            ].map((r, i) => (
+              <div key={i} className="flex items-center justify-between py-2 px-3 rounded-xl hover:bg-[#F8F9FA] transition-colors">
+                <span className="text-[13px] text-ink font-medium">{r.client}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-[13px] font-semibold text-ink">{r.amount}</span>
+                  <span className={`text-[11px] chip-mono rounded-full px-2.5 py-0.5 ${r.color}`}>{r.status}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
           {/* 1 — WEB */}
           <article className="reveal bg-white rounded-2xl border border-black/[0.06] shadow-[0_8px_30px_-16px_rgba(10,75,120,0.15)] overflow-hidden" data-delay="0">
