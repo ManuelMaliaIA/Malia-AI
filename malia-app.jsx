@@ -1,6 +1,6 @@
 ﻿const { useState, useEffect, useRef, useMemo } = React;
 
-const WHATSAPP = 'https://wa.me/34611459336';
+const WHATSAPP = 'https://wa.me/34611459336?text=Hola%2C%20me%20interesa%20el%20diagn%C3%B3stico%20gratuito%20de%20Malia';
 
 /* ============================================================
    Reveal-on-scroll
